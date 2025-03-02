@@ -10,9 +10,9 @@ With his great interest in programming, he is concentrated on the field of embod
 
 ## Education
 
-- B.S. in Computer Engineering, Zhejiang University
+- B.Eng. in Computer Engineering, Zhejiang University
 
-- B.S. in Computer Engineeringm, University of Illinois at Urbana-Champaign
+- B.Eng. in Computer Engineeringm, University of Illinois at Urbana-Champaign
 
 
 
