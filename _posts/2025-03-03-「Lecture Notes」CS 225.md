@@ -447,3 +447,40 @@ class time {
 
 > We couldn't omit the `{}` behind.
 {: .prompt-warning }
+
+## $\texttt{Pointers and Memory}$
+
+### $\texttt{Pointers}$
+
+The format of definition of potinters can be written as below:
+
+$$\text{<type> pointer\_name = <memory location>}$$
+
+Here are some examples:
+
+```cpp
+int a = 10;
+int *ptr = &a;
+
+class node {
+    // something
+};
+node *nodeptr = new node(); 
+```
+
+> Pointers can also be casted since they both points to memory locations. But you should notice the type, or it may cause error.
+{: .prompt-info }
+
+Pointers point to the lowest byte of one's memory location.
+
+### $\texttt{Memory}$
+
+We can simplify the memory into two types, **stack memory** and **heap memory**.
+
+**Stack memory** store objects from high bytes to low bytes, while **heap memory** store objects from low bytes to high bytes.
+
+**Stack memory** is used to store static objects, while **heap memory** is used to store dynamic objects called from the keyword `new`.
+
+> Remember to use `delete` to delete the object called by `new`, or it will cause memory overflow. After delete, you'd better to set the pointer to `nullptr`, or you will meet segement fault when reuse the pointer.
+{: .prompt-info }
+
