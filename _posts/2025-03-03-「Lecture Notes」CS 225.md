@@ -51,7 +51,8 @@ The basic data types are shown in the following table.
 | pointers (32-bit system) | $4$ | None |
 | pointers (64-bit system) | $8$ | None |
 
-Notice that there are bytes difference for `long` and pointers in 32-bit or 64-bit systems.
+> Notice that there are bytes difference for `long` and pointers in 32-bit or 64-bit systems.
+{: .prompt-info }
 
 ### $\texttt{Type Casting}$
 
@@ -72,7 +73,8 @@ int *ptr = (int*)x;
 // ptr will point to the memory location 0x123.
 ```
 
-Notice that type casting may cause precision loss or overflow.
+> Notice that type casting may cause precision loss or overflow.
+{: .prompt-warning }
 
 ## $\texttt{Encapsulation}$
 
@@ -182,7 +184,8 @@ using mynamespace::func();
 func();
 ```
 
-Notice that if you use the keyword `using`, it will cover all the variables that have the same name.
+> Notice that if you use the keyword `using`, it will cover all the variables that have the same name.
+> {: .prompt-info }
 
 ```cpp
 #include <bits/stdc++.h>
@@ -363,3 +366,84 @@ In general, the attribute members of a class should be set to `private`, and `pu
 
 ### $\texttt{Constructors}$
 
+Constructor is the first function called when a new object of a given `class` or `struct` is created.
+
+The constructor is defined by the name which is the same as the name of its own `class` or `struct`.
+
+```cpp
+class time {
+    private:
+        int year, month, day;
+    public: 
+        time() {
+            year = month = day = 0;
+        }
+        time(int yy, int mm, int dd) {
+            year = yy;
+            month = mm;
+            day = dd;
+        }
+};
+
+int main() {
+    time t1; // (0, 0, 0)
+    time t2 = time(25, 3, 3);
+    return 0;
+}
+```
+
+Where the constructor without parameters is called **parameterless constructor**, which is a type of **default constructors**, and the constructor with parameters is called **parameter constructor**.
+
+> If we don't define constructors for a `class`, the compiler will automatically generate a default constructor. However, the value in the new object will be random in this way.
+{: .prompt-info }
+
+These two constructors can be combined as a new constructor.
+
+```cpp
+class time {
+    private:
+        int year, month, day;
+    public: 
+        time(int yy = 0, int mm = 0, int dd = 0) {
+            year = yy;
+            month = mm;
+            day = dd;
+        }
+};
+```
+
+The constructor is called **all default constructor**
+
+> Notice that **paramaterless constructors**, **constructors automatically generated**, and **all default constructors** are all **default constructors**. One `class` or `struct` can only have one **default constructor**.
+{: .prompt-warning }
+
+```cpp
+// error
+class time {
+    private:
+        int year, month, day;
+    public: 
+        time() {
+            year = month = day = 0;
+        }
+        time(int yy = 0, int mm = 0, int dd = 0) {
+            year = yy;
+            month = mm;
+            day = dd;
+        }
+};
+```
+
+Another way to write constructors is to use **initialization list**.
+
+```cpp
+class time {
+    private:
+        int year, month, day;
+    public: 
+        time(int yy = 0, int mm = 0, int dd = 0) : year(yy), month(mm), day(dd) {}
+};
+```
+
+> We couldn't omit the `{}` behind.
+{: .prompt-warning }
