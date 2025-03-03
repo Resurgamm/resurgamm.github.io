@@ -53,6 +53,27 @@ The basic data types are shown in the following table.
 
 Notice that there are bytes difference for `long` and pointers in 32-bit or 64-bit systems.
 
+### $\texttt{Type Casting}$
+
+We use `(Type)expression` to coercively change the type of the expression to another type.
+
+```cpp
+int a = 10;
+double b = 2.5;
+
+double c = (double)a;
+int d = (int)b;
+
+printf("%d->%lf, %ld->%d\n", a, c, b, d);
+// 10->10.0, 2.5->2
+
+int x = 123;
+int *ptr = (int*)x;
+// ptr will point to the memory location 0x123.
+```
+
+Notice that type casting may cause precision loss or overflow.
+
 ## $\texttt{Encapsulation}$
 
 In practice, public functions and private member variables in a `class` have encapsulation properties. In C/C++, data structures and function definitions are forward declared in **header files**(`.h`), and then implemented in **program files**(`.c/.cpp`).
@@ -341,3 +362,4 @@ Where `private` indicates that part of the content is private and cannot be acce
 In general, the attribute members of a class should be set to `private`, and `public` is only reserved for those function interfaces that are used by outsiders, but this is not mandatory, and can be adjusted as needed.
 
 ### $\texttt{Constructors}$
+
