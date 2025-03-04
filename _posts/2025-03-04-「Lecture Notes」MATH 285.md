@@ -18,7 +18,7 @@ $$\begin{equation}\tag{*}
 F(t, \mathbf{y}^{\prime}, \mathbf{y}^{\prime\prime}, \dots, \mathbf{y}^{(n)}) = 0
 \end{equation}$$
 
-where $F$ has domain $D\subseteq\mathbb{R}^m\times\mathbb{R}^m\times\underbrace{\mathbb{R}^m\dots\mathbb{R}^m}_{n+1}$.
+where $F$ has domain $D\subseteq\mathbb{R}\times\underbrace{\mathbb{R}^m\times\mathbb{R}^m\dots\mathbb{R}^m}_{n+1}$.
 
 A solution to $(*)$ is a function (curve) $f : I\to \mathbb{R}^m$, defined on an interval $I\subseteq \mathbb{R}$ of length $> 0$, which is $n$ times differentiable and satisfies $F(t, f^{\prime}(t), f^{\prime\prime}(t), \dots, f^{(n)}(t)) = 0$ for all $t\in I$.
 
