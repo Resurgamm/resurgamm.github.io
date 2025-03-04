@@ -28,6 +28,9 @@ A solution to $(*)$ is a function (curve) $f : I\to \mathbb{R}^m$, defined on an
 
 #### $\texttt{Definition (Initial Value Problem, IVP)}$
 
+
+To solve particular problems, we usually need to have **initial conditions** to find the particular soltion for the problem. The combination of initial conditions and ODEs are called **Initial Value Problem (IVP)**. 
+
 Suppose that an ODE as above is given and $t_0\in \mathbb{R}, \mathbf{y}_0, \dots, \mathbf{y}_n\in \mathbb{R}^m$ are such that $F(t_0, \mathbf{y}_0, \dots, \mathbf{y}_n) = 0$. A solution to the initial value problem
 
 $$F(t, \mathbf{y}^{\prime}, \mathbf{y}^{\prime\prime}, \dots, \mathbf{y}^{(n)}) = 0,\ \mathbf{y}^{(i)}(t_0) = \mathbf{y}_i\ \ \text{for}\ 0\leqslant i\leqslant n$$
