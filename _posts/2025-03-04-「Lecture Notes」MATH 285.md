@@ -10,7 +10,7 @@ math: true
 
 ### $\texttt{Some Definitions}$
 
-#### $\texttt{Definition (Ordinary Differential Equation, ODE)}$
+#### $\texttt{Ordinary Differential Equation, ODE}$
 
 An ODE of order n has the form
 
@@ -22,11 +22,11 @@ where $F$ has domain $D\subseteq\mathbb{R}\times\underbrace{\mathbb{R}^m\times\m
 
 A solution to $(*)$ is a function (curve) $f : I\to \mathbb{R}^m$, defined on an interval $I\subseteq \mathbb{R}$ of length $> 0$, which is $n$ times differentiable and satisfies $F(t, f^{\prime}(t), f^{\prime\prime}(t), \dots, f^{(n)}(t)) = 0$ for all $t\in I$.
 
-> The solution of n-ordered ODE $f(t, \text C_1, \text C_2, \dots, \text C_n)$ has $n$ arbitrary constants $\text C_1, \text C_2, \dots, \text C_n$ that are independent of each other is called a **general solution** to $(*)$.
+> The solution of n-ordered ODE $f(t, \mathrm C_1, \mathrm C_2, \dots, \mathrm C_n)$ has $n$ arbitrary constants $\mathrm C_1, \mathrm C_2, \dots, \mathrm C_n$ that are independent of each other is called a **general solution** to $(*)$.
 > And if the solution doesn't content any constants, we called it a **particular solution**.
 {: .prompt-info }
 
-#### $\texttt{Definition (Initial Value Problem, IVP)}$
+#### $\texttt{Initial Value Problem, IVP}$
 
 
 To solve particular problems, we usually need to have **initial conditions** to find the particular soltion for the problem. The combination of initial conditions and ODEs are called **Initial Value Problem (IVP)**. 
@@ -36,6 +36,30 @@ Suppose that an ODE as above is given and $t_0\in \mathbb{R}, \mathbf{y}_0, \dot
 $$F(t, \mathbf{y}^{\prime}, \mathbf{y}^{\prime\prime}, \dots, \mathbf{y}^{(n)}) = 0,\ \mathbf{y}^{(i)}(t_0) = \mathbf{y}_i\ \ \text{for}\ 0\leqslant i\leqslant n$$
 
 is any function (curve) $f : I \to \mathbb{R}^m$ solving $(*)$ and satisfying $f(t_0) = \mathbf{y}_0,$ $f^{\prime}(t_0) = \mathbf{y}_1, \dots,$ $f^{(n)}(t_0) = \mathbf{y}^{(n)}$.
+
+#### $\texttt{Direction Fields (Line Element Fields)}$
+
+Let $f : D\to \mathbb{R}, D\in \mathbb{R}^2$ be a function. 
+
+Solving the 1st-order ODE $y^{\prime} = f(t, y)$ amounts to finding a function $y = y(t)$, defined on some interval $I\subseteq \mathbb{R}$, and such that for all $t\in I$, it should satisfy
+
+1. $(t, y(t))\in D$
+2. The slope of the graph of $y$ at the point $(t, y(t))$ equals to $f(t, y(t))$. Alternatively, the tangent direction to the graph at $(t, y(t))$ is represented by the vector $(1, f(t, y(t)))$
+
+### $\texttt{Ten Examples}$
+
+#### $y^{\prime} = a(t)$
+
+Assuming that $a(t)$ is continous, the general solutions is 
+
+$$y(t) = \int a(t)\ \mathrm{d}t$$
+
+The solution of IVP, 
+
+
+
+
+
 
 
 
