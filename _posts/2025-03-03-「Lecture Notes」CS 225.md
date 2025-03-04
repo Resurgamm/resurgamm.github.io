@@ -484,3 +484,15 @@ We can simplify the memory into two types, **stack memory** and **heap memory**.
 > Remember to use `delete` to delete the object called by `new`, or it will cause memory overflow. After delete, you'd better to set the pointer to `nullptr`, or you will meet segement fault when reuse the pointer.
 {: .prompt-info }
 
+## $\texttt{Reference Variables}$
+
+Reference variables is defined by the symbol `&`.
+
+```cpp
+int a = 10;
+int &b = a;
+```
+
+The reference variable can be regard as a nick name of the variable it refers to.
+
+
