@@ -6,8 +6,6 @@ tags: [Math, Programming, C/C++]     # TAG names should always be lowercase
 math: true
 ---
 
-# $\texttt{CS 225 Lecture Notes}$
-
 ## $\texttt{Variables}$
 
 ### $\texttt{Variable Definition}$
