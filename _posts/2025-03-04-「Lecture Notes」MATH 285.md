@@ -48,20 +48,51 @@ Solving the 1st-order ODE $y^{\prime} = f(t, y)$ amounts to finding a function $
 
 ### $\texttt{Ten Examples}$
 
-#### $y^{\prime} = a(t)$
+#### 1. $y^{\prime} = a(t)$
 
 Assuming that $a(t)$ is continous, the general solutions is 
 
 $$y(t) = \int a(t)\ \mathrm{d}t$$
 
-The solution of IVP, 
+The solution of IVP $y^{\prime} = a(t), y(t_0) = y_0$ is
+
+$$y(t) = y_0 + \int_{t_0}^{t} a(\tau)\ \mathrm{d}\tau$$
+
+The solution of IVP $\mathbf{y}^{\prime} = \mathbf{a}(t), \mathbf{y}(t_0) = \mathbf{y_0}$ is
+
+$$\mathbf{y}(t) = \begin{pmatrix} 
+y_{1}^{(0)} + \int_{t_0}^{t} a_1(\tau) \mathrm{d}\tau \\
+\vdots \\
+y_{m}^{(0)} + \int_{t_0}^{t} a_m(\tau) \mathrm{d}\tau
+\end{pmatrix}$$
+
+where $\mathbf{y}(t) = (y_1(t), \cdots, y_m(t))^{\top},\ \mathbf{a}(t) = (a_1(t), \cdots, a_m(t))^{\top}$
+
+#### 2.
+#### 3.
+#### 4.
+#### 5.
+#### 6.
+#### 7.
+#### 8.
+#### 9.
+#### 10.
+
+## $\texttt{First-Order Linear Equations}$
+
+### $\texttt{Definition}$
+
+An (explicit) first-order linear ODE has the form
+
+$$y^{\prime} = a(t)y + b(t)$$
+
+If $b(t) = 0$, the linear ODE is called **homogeneous**, and if $b(t) \not = 0$ for at least one $t$, it is called **inhomogeneous**.
+
+### $\texttt{Theorem}$
+
+#### $\texttt{Homogeneous Case}$
 
 
 
-
-
-
-
-
-
+#### $\texttt{Inhomogeneous Case}$
 
