@@ -493,4 +493,37 @@ int &b = a;
 
 The reference variable can be regard as a nick name of the variable it refers to.
 
+## $\texttt{Parameters}$
+
+There usually will have some parameters when we write a function, and the parameter can be **variable**, **pointer**, and **reference variable**.
+
+Here are some examples:
+
+```cpp
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+void swap(int &a, int &b) {
+    int c = a;
+    a = b;
+    b = c;
+}
+
+void find(list *L, int x) {
+    // do something
+}
+```
+
+The following table shows the comparison of these three kinda parameters.
+
+![img](https://img2023.cnblogs.com/blog/2931579/202503/2931579-20250306191915893-677711964.png)
+
+A special kind of parameter is **constant parameter**. The keyword `const` means unchanged value, so whenever you use `const`, you can regard that thing unchanged.
+
+## $\texttt{Constant Function or Function Constant?}$
+
+As we said before, `const` add anything means
+
+
 
