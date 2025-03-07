@@ -343,11 +343,11 @@ namespace {
 
 ## $\texttt{Classes}$
 
-A class is to a car factory as an object is to a car. Classes define the behavior of a type of object. They contain variables and functions that are inherent to the class.
+A `class` is to a car factory as an object is to a car. Classes define the behavior of a type of object. They contain variables and functions that are inherent to the `class`.
 
 ### $\texttt{Class Definition}$
 
-A class is usually defined with two keywords `private` and `public` and the content in these two keywords.
+A `class` is usually defined with two keywords `private` and `public` and the content in these two keywords.
 
 ```cpp
 class myclass {
@@ -358,11 +358,11 @@ class myclass {
 };
 ```
 
-Where `private` indicates that part of the content is private and cannot be accessed or invoked externally, but can only be accessed internally by the class, and `public` represents public properties and methods that can be directly accessed or invoked by the outside world.
+Where `private` indicates that part of the content is private and cannot be accessed or invoked externally, but can only be accessed internally by the `class`, and `public` represents public properties and methods that can be directly accessed or invoked by the outside world.
 
-In general, the attribute members of a class should be set to `private`, and `public` is only reserved for those function interfaces that are used by outsiders, but this is not mandatory, and can be adjusted as needed.
+In general, the attribute members of a `class` should be set to `private`, and `public` is only reserved for those function interfaces that are used by outsiders, but this is not mandatory, and can be adjusted as needed.
 
-### $\texttt{Constructors}$
+### $\texttt{Constructor}$
 
 Constructor is the first function called when a new object of a given `class` or `struct` is created.
 
@@ -446,6 +446,129 @@ class time {
 > We couldn't omit the `{}` behind.
 {: .prompt-warning }
 
+### $\texttt{Copy Constructor}$
+
+Copy constructor can be regard as a particular constructor with a reference of the same `class` as the only parameter.
+
+The reference can be whether constant or non-constant reference.
+
+```cpp
+class myclass {
+    private:
+        // something
+    public:
+        myclass(myclass &other);
+        // or
+        myclass(const myclass &other);
+};
+```
+
+> I prefer to use constant reference to ensure the reference won't be changed.
+{: .prompt-tip }
+
+If we don't define constructors for a `class`, the compiler will automatically generate a default copy constructor which will copy all the value in the `class`.
+
+```cpp
+#include<iostream>
+
+using namespace std;
+
+class node {
+    private:
+        int value;
+    public:
+        node(int value = 0) {
+            this->value = value;
+        }
+        void printValue() {
+            printf("%d\n", value);
+        }
+}
+
+int main() {
+    node a(5);
+    node b(a);
+    a.printValue(); // 5
+    b.printValue(); // 5
+    return 0;
+}
+```
+
+Once we define our own copy constructor, the comploer will use ours instead of the automatic one.
+
+```cpp
+#include<iostream>
+
+using namespace std;
+
+class node {
+    private:
+        int value;
+    public:
+        node(int value = 0) {
+            this->value = value;
+        }
+        node(const node &other) {
+            value = other.value;
+            printf("my copy constructor\n");
+        }
+        void printValue() {
+            printf("%d\n", value);
+        }
+}
+
+int main() {
+    node a(5);
+    node b(a); // my copy constructor
+    a.printValue(); // 5
+    b.printValue(); // 5
+    return 0;
+}
+```
+
+The copy constructor will be called when the following cases occur:
+
+- Use a object to initialize another one.
+
+```cpp
+node a(5);
+node b(a); // call 
+node c = a; // call
+```
+
+- The object is used as a parameter of a function.
+
+```cpp
+void f(node x) {
+    // do something
+}
+
+int main() {
+    node a(5);
+    f(a); // call
+    return 0;
+}
+```
+
+> If the parameter is a reference an object, the copy constructor won't be called. So, to optimize the code, we usually use references or pointers as parameters.
+{: .prompt-info }
+
+- The return value of a function is an object.
+
+```cpp
+node g(int x) {
+    node res(x);
+    return res;
+}
+
+int main() {
+    node a;
+    a = g(5); // call
+    return 0;
+}
+```
+
+
 ## $\texttt{Pointers and Memory}$
 
 ### $\texttt{Pointers}$
@@ -517,13 +640,16 @@ void find(list *L, int x) {
 
 The following table shows the comparison of these three kinda parameters.
 
-![img](https://img2023.cnblogs.com/blog/2931579/202503/2931579-20250306191915893-677711964.png)
+![table1](..\assets\img\cs225\table1.png)
 
 A special kind of parameter is **constant parameter**. The keyword `const` means unchanged value, so whenever you use `const`, you can regard that thing unchanged.
 
 ## $\texttt{Constant Function or Function Constant?}$
 
-As we said before, `const` add anything means
+As we said before, `const` plus anything means keep unchanged, and it can be used in functions. So, what's the difference between `const` is before or after the function?
 
+`const int f() {}` means that the function will return a **constant variable** that can not be changed in the following code.
+
+While, `int f() const {}` is a member function used in `class` or `struct` that tells us it won't and unable to change `private members` through running itself.
 
 
