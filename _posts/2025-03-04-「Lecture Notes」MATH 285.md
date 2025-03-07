@@ -134,6 +134,8 @@ We choose $m(t) = e^{-A(t)}, A(t) = \int a(s) \mathrm{d}s$. In this way, we can 
 
 $$\frac{\mathrm{d}}{\mathrm{d}t}(m(t)y(t)) = m(t)y^{\prime}(t) + m^{\prime}(t)y(t) = m(t)y^{\prime}(t) - m(t)a(t)y(t)$$
 
-which is the left-hand side of $(*)$. Integrate both the left-hand and right-hand side of $(*)$, we can get
+which is the left-hand side of $(*)$.
+
+Integrate both the left-hand and right-hand side of $(*)$, we can get
 
 $$m(t)y(t) = \int m(t)b(t) \Rightarrow y(t) = e^{A(t)}\int e^{-A(t)}b(t) \mathrm{d}t$$
