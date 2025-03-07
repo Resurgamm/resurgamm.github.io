@@ -100,9 +100,9 @@ The domain of $y(t)$ is that of $a(t)$. If the domain $T$ of $a(t)$ is not an in
 
 #### $\texttt{Inhomogeneous Case}$
 
-> **Idea**: The homogeneous ODE $y^{\prime} = a(t)y$ is solved by $y(t) = Ce^{A(t)}$. In order to solve $y^{\prime} = a(t)y + b(t)$, make $C = C(t)$ variable; that is we set $y_p(t) = C(t)e^{A(t)}$ $ = C(t)y_h(t)$, where $y_h(t)$ denotes a solution of the homogeneous ODE. Therefore
-> $$y_p^{\prime} = (Cy_h)^{\prime} = C^{\prime}y_h + Cy_h^{\prime} = C^{\prime}y_h + Cay_h = a(Cy_h) + b \Leftrightarrow C^{\prime} = by_h^{-1}$$
-{: .prompt-tip }
+**Idea**: The homogeneous ODE $y^{\prime} = a(t)y$ is solved by $y(t) = Ce^{A(t)}$. In order to solve $y^{\prime} = a(t)y + b(t)$, make $C = C(t)$ variable; that is we set $y_p(t) = C(t)e^{A(t)} = C(t)y_h(t)$, where $y_h(t)$ denotes a solution of the homogeneous ODE. Therefore
+
+$$y_p^{\prime} = (Cy_h)^{\prime} = C^{\prime}y_h + Cy_h^{\prime} = C^{\prime}y_h + Cay_h = a(Cy_h) + b \Leftrightarrow C^{\prime} = by_h^{-1}$$
 
 Suppose $a(t)$ and $b(t)$ are continous.
 
@@ -113,3 +113,27 @@ $$y_p(t) = e^{A(t)}\int_{t_0}^{t}b(s)e^{-A(t)} \mathrm{d}s,\ \text{where}\ A(t) 
 And the generous solution of $y^{\prime} = a(t)y + b(t)$ is
 
 $$y(t) = Ce^{A(t)} + y_p(t) = y(t_0)e^{A(t)} + y_p(t),\ C\in \mathbb{R}$$
+
+### $\texttt{Integrating Factors}$
+
+There is an alternative way to solve $y^{\prime} = a(t)y + b(t)$ using a so-called **integrating factor**. We can rewrite the ODE as
+
+$$y^{\prime}(t) - a(t)y(t) = b(t)$$
+
+This equation can be multiplied by any function $m(t)$ with domain $I$ to yield the equivalent form
+
+$$\begin{equation}\tag{*}
+m(t)y^{\prime}(t) - m(t)a(t)y(t) = m(t)b(t)
+\end{equation}$$
+
+provided by $m(t)\not = 0$ for all $t\in I$.
+
+The goal is to choose a proper $m(t)$ such that the left-hand side can be integrated to yield $m(t)y(t)$ 
+
+We choose $m(t) = e^{-A(t)}, A(t) = \int a(s) \mathrm{d}s$. In this way, we can get
+
+$$\frac{\mathrm{d}}{\mathrm{d}t}(m(t)y(t)) = m(t)y^{\prime}(t) + m^{\prime}(t)y(t) = m(t)y^{\prime}(t) - m(t)a(t)y(t)$$
+
+which is the left-hand side of $(*)$. Integrate both the left-hand and right-hand side of $(*)$, we can get
+
+$$m(t)y(t) = \int m(t)b(t) \Rightarrow y(t) = e^{A(t)}\int e^{-A(t)}b(t) \mathrm{d}t$$
