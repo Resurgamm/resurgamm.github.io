@@ -640,7 +640,7 @@ void find(list *L, int x) {
 
 The following table shows the comparison of these three kinda parameters.
 
-![table1](..\assets\img\cs225\table1.png)
+![table1](../assets/img/cs225/table1.png)
 
 A special kind of parameter is **constant parameter**. The keyword `const` means unchanged value, so whenever you use `const`, you can regard that thing unchanged.
 
