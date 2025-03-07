@@ -92,7 +92,24 @@ If $b(t) = 0$, the linear ODE is called **homogeneous**, and if $b(t) \not = 0$ 
 
 #### $\texttt{Homogeneous Case}$
 
+If $a(t)$ is continous, the general solution of $y^{\prime} = a(t)y$ is given by
 
+$$y(t) = Ce^{\int_{t_0}^{t} a(s) \mathrm{d}s} = y(t_0)e^{\int_{t_0}^{t} a(s) \mathrm{d}s},\ C\in \mathbb{R} $$
+
+The domain of $y(t)$ is that of $a(t)$. If the domain $T$ of $a(t)$ is not an interval, there exists a solution of the stated form on every connected component of $T$.
 
 #### $\texttt{Inhomogeneous Case}$
 
+> **Idea**: The homogeneous ODE $y^{\prime} = a(t)y$ is solved by $y(t) = Ce^{A(t)}$. In order to solve $y^{\prime} = a(t)y + b(t)$, make $C = C(t)$ variable; that is we set $y_p(t) = C(t)e^{A(t)}$ $ = C(t)y_h(t)$, where $y_h(t)$ denotes a solution of the homogeneous ODE. Therefore
+> $$y_p^{\prime} = (Cy_h)^{\prime} = C^{\prime}y_h + Cy_h^{\prime} = C^{\prime}y_h + Cay_h = a(Cy_h) + b \Leftrightarrow C^{\prime} = by_h^{-1}$$
+{: .prompt-tip }
+
+Suppose $a(t)$ and $b(t)$ are continous.
+
+Then a particular solution of $y^{\prime} = a(t)y + b(t)$ is
+
+$$y_p(t) = e^{A(t)}\int_{t_0}^{t}b(s)e^{-A(t)} \mathrm{d}s,\ \text{where}\ A(t) = \int_{t_0}^{t}a(s) \mathrm{d}s$$
+
+And the generous solution of $y^{\prime} = a(t)y + b(t)$ is
+
+$$y(t) = Ce^{A(t)} + y_p(t) = y(t_0)e^{A(t)} + y_p(t),\ C\in \mathbb{R}$$
