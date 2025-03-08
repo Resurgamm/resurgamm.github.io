@@ -584,6 +584,16 @@ class myclass {
 > If we don't define the assign operator for a `class`, the compiler will automatically generate a default assign operator. Note that the default assign operator is **shallow copy**, while defined assign operator is **deep copy**.
 {: .prompt-info }
 
+A gerneral realization of the assign operator is as below:
+
+```cpp
+myclass& myclass::operator= (const &myclass other) {
+    if (this == &other) return *this;
+    // copy everything from other
+    return *this;
+}
+```
+
 
 It is very similiar to the **copy constructor** since they have the same function. However, the **copy constructor** is used in the ways  above-mentioned, while the **assign operator** is used to assign the values.
 
