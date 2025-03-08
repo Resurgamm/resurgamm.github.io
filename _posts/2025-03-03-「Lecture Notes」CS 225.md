@@ -466,7 +466,7 @@ class myclass {
 > I prefer to use constant reference to ensure the reference won't be changed.
 {: .prompt-tip }
 
-If we don't define constructors for a `class`, the compiler will automatically generate a default copy constructor which will copy all the value in the `class`.
+If we don't define the copy constructor for a `class`, the compiler will automatically generate a default copy constructor which will copy all the value in the `class`.
 
 ```cpp
 #include<iostream>
@@ -568,6 +568,31 @@ int main() {
 }
 ```
 
+### $\texttt{Assign Operator}$ 
+
+Assign operator is a type of overloaded operators, which is used to assign the value for an object. The assign operator is defined with the keyword `operator=`.
+
+```cpp
+class myclass {
+    private:
+        // something
+    public:
+        myclass& operator= (const &myclass other);
+}
+```
+
+> If we don't define the assign operator for a `class`, the compiler will automatically generate a default assign operator. Note that the default assign operator is **shallow copy**, while defined assign operator is **deep copy**.
+{: .prompt-info }
+
+
+It is very similiar to the **copy constructor** since they have the same function. However, the **copy constructor** is used in the ways  above-mentioned, while the **assign operator** is used to assign the values.
+
+```cpp
+myclass a;
+myclass b = a; // copy constructor
+myclass c;
+c = a; // assign operator
+```
 
 ## $\texttt{Pointers and Memory}$
 
