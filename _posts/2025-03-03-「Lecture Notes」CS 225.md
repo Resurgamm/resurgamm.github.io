@@ -713,3 +713,8 @@ class myclass {
 > - Destructor
 
 The Rule of Three in C++ is a fundamental principle that states if a class requires a user-defined destructor, a user-defined copy constructor, or a user-defined copy assignment operator, it almost certainly requires all three. This rule is essential for managing resources correctly, especially when dealing with dynamic memory allocation.
+
+
+### $\texttt{Derived Class}$ 
+
+
