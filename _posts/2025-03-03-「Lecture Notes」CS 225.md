@@ -717,4 +717,65 @@ The Rule of Three in C++ is a fundamental principle that states if a class requi
 
 ### $\texttt{Derived Class}$ 
 
+Derived class is a class which inherits all of the functions and all of the data of the base class.
+
+#### $\texttt{Definition}$
+
+A general definition of a derived class is as below:
+
+```cpp
+class [Derived Class Name] : [Inheritance Method] (Base Class Name) {
+    // something
+};
+```
+
+Here is an example:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Car {
+    public:
+        string brand_;
+        string color_;
+
+        Car() {brand_ = "XXX"; color_ = "XXX"; cout << "Car Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << endl;}
+        ~Car() {cout << "Car Destructor called" << endl;}
+};
+
+class Porsche: public Car {
+    public:
+        int speed_;
+        Porsche() {speed_ = 111; cout << "Porsche Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << " Speed: " << speed_ << endl;}
+};
+
+int main() {
+    Car c1;
+    c1.show();
+    Porsche p1; 
+    p1.show(); 
+    return 0;
+}
+```
+
+The compile and run effect is as follows:
+
+```powershell
+Car Constructor called
+Brand: XXX Color: XXX
+Car Constructor called
+Porsche Constructor called
+Brand: XXX Color: XXX Speed: 111
+Car Destructor called
+Car Destructor called
+```
+
+> The call order when a derived object is that base class’ constructor is called first then derived class constructor is called. And when the derived object is destroyed, it is in the reversed order, that is, derived class’ destructor is called first, then the most base class’s destructor is called last.
+{: .prompt-info }
+
+#### $\texttt{Inheritance Method}$
 
