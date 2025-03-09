@@ -1,6 +1,6 @@
 ---
 title: 「Lecture Notes」CS 225
-date: 2024-03-03 00:04:20 +0800
+date: 2024-03-03 00:05:20 +0800
 categories: [Lecture Notes]
 tags: [Math, Programming, C/C++]     # TAG names should always be lowercase
 math: true
