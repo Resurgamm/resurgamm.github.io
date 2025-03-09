@@ -341,6 +341,89 @@ namespace {
 }
 ```
 
+## $\texttt{Pointers and Memory}$
+
+### $\texttt{Pointers}$
+
+The format of definition of potinters can be written as below:
+
+$$\text{<type> pointer\_name = <memory location>}$$
+
+Here are some examples:
+
+```cpp
+int a = 10;
+int *ptr = &a;
+
+class node {
+    // something
+};
+node *nodeptr = new node(); 
+```
+
+> Pointers can also be casted since they both points to memory locations. But you should notice the type, or it may cause error.
+{: .prompt-info }
+
+Pointers point to the lowest byte of one's memory location.
+
+### $\texttt{Memory}$
+
+We can simplify the memory into two types, **stack memory** and **heap memory**.
+
+**Stack memory** store objects from high bytes to low bytes, while **heap memory** store objects from low bytes to high bytes.
+
+**Stack memory** is used to store static objects, while **heap memory** is used to store dynamic objects called from the keyword `new`.
+
+> Remember to use `delete` to delete the object called by `new`, or it will cause memory overflow. After delete, you'd better to set the pointer to `nullptr`, or you will meet segement fault when reuse the pointer.
+{: .prompt-info }
+
+## $\texttt{Reference Variables}$
+
+Reference variables is defined by the symbol `&`.
+
+```cpp
+int a = 10;
+int &b = a;
+```
+
+The reference variable can be regard as a nick name of the variable it refers to.
+
+## $\texttt{Parameters}$
+
+There usually will have some parameters when we write a function, and the parameter can be **variable**, **pointer**, and **reference variable**.
+
+Here are some examples:
+
+```cpp
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+void swap(int &a, int &b) {
+    int c = a;
+    a = b;
+    b = c;
+}
+
+void find(list *L, int x) {
+    // do something
+}
+```
+
+The following table shows the comparison of these three kinda parameters.
+
+![table1](../assets/img/cs225/table1.png)
+
+A special kind of parameter is **constant parameter**. The keyword `const` means unchanged value, so whenever you use `const`, you can regard that thing unchanged.
+
+## $\texttt{Constant Function or Function Constant?}$
+
+As we said before, `const` plus anything means keep unchanged, and it can be used in functions. So, what's the difference between `const` is before or after the function?
+
+`const int f() {}` means that the function will return a **constant variable** that can not be changed in the following code.
+
+While, `int f() const {}` is a member function used in `class` or `struct` that tells us it won't and unable to change `private members` through running itself.
+
 ## $\texttt{Classes}$
 
 A `class` is to a car factory as an object is to a car. Classes define the behavior of a type of object. They contain variables and functions that are inherent to the `class`.
@@ -392,7 +475,7 @@ int main() {
 
 Where the constructor without parameters is called **parameterless constructor**, which is a type of **default constructors**, and the constructor with parameters is called **parameter constructor**.
 
-> If we don't define constructors for a `class`, the compiler will automatically generate a default constructor. However, the value in the new object will be random in this way.
+> If we don't define constructors for a `class` or a `struct`, the compiler will automatically generate a default constructor. However, the value in the new object will be random in this way.
 {: .prompt-info }
 
 These two constructors can be combined as a new constructor.
@@ -448,7 +531,7 @@ class time {
 
 ### $\texttt{Copy Constructor}$
 
-Copy constructor can be regard as a particular constructor with a reference of the same `class` as the only parameter.
+Copy constructor can be regard as a particular constructor with a reference of the same `class` or `struct` as the only parameter.
 
 The reference can be whether constant or non-constant reference.
 
@@ -466,7 +549,7 @@ class myclass {
 > I prefer to use constant reference to ensure the reference won't be changed.
 {: .prompt-tip }
 
-If we don't define the copy constructor for a `class`, the compiler will automatically generate a default copy constructor which will copy all the value in the `class`.
+If we don't define the copy constructor for a `class` or a `struct`, the compiler will automatically generate a default copy constructor which will copy all the value in the `class` or the `struct`.
 
 ```cpp
 #include<iostream>
@@ -568,9 +651,9 @@ int main() {
 }
 ```
 
-### $\texttt{Assign Operator}$ 
+### $\texttt{Assignment Operator}$ 
 
-Assign operator is a type of overloaded operators, which is used to assign the value for an object. The assign operator is defined with the keyword `operator=`.
+Assignment operator is a type of overloaded operators, which is used to assignment the value for an object. The assignment operator is defined with the keyword `operator=`.
 
 ```cpp
 class myclass {
@@ -581,10 +664,10 @@ class myclass {
 }
 ```
 
-> If we don't define the assign operator for a `class`, the compiler will automatically generate a default assign operator. Note that the default assign operator is **shallow copy**, while defined assign operator is **deep copy**.
+> If we don't define the assignment operator for a `class` or a `struct`, the compiler will automatically generate a default assignment operator. Note that the default assignment operator is **shallow copy**, while defined assignment operator is **deep copy**.
 {: .prompt-info }
 
-A gerneral realization of the assign operator is as below:
+A gerneral realization of the assignment operator is as below:
 
 ```cpp
 myclass& myclass::operator= (const &myclass other) {
@@ -595,96 +678,38 @@ myclass& myclass::operator= (const &myclass other) {
 ```
 
 
-It is very similiar to the **copy constructor** since they have the same function. However, the **copy constructor** is used in the ways  above-mentioned, while the **assign operator** is used to assign the values.
+It is very similiar to the **copy constructor** since they have the same function. However, the **copy constructor** is used in the ways  above-mentioned, while the **assignment operator** is used to assign the values.
 
 ```cpp
 myclass a;
 myclass b = a; // copy constructor
 myclass c;
-c = a; // assign operator
+c = a; // assignment operator
 ```
 
-## $\texttt{Pointers and Memory}$
+### $\texttt{Destructor}$
 
-### $\texttt{Pointers}$
+Destructor is the last function to be automatically called when an object of a given `class` or `struct` is to be deleted. 
 
-The format of definition of potinters can be written as below:
-
-$$\text{<type> pointer\_name = <memory location>}$$
-
-Here are some examples:
+The destructor is defined by `~` and the name which is the same as the name of its own `class` or `struct`.
 
 ```cpp
-int a = 10;
-int *ptr = &a;
-
-class node {
-    // something
-};
-node *nodeptr = new node(); 
+class myclass {
+    private:
+        // something
+    public:
+        ~myclass();
+}
 ```
 
-> Pointers can also be casted since they both points to memory locations. But you should notice the type, or it may cause error.
+> If we don't define a desturctor for a `class` or a `struct`, the compiler will automatically generate a default desturctor.
 {: .prompt-info }
 
-Pointers point to the lowest byte of one's memory location.
+### $\texttt{The Rule of Three}$
 
-### $\texttt{Memory}$
+> **The Rule of Three:** If any one of the following three methods is needed, then all three of them must be defined:
+> - Copy constructor
+> - Assignment operator 
+> - Destructor
 
-We can simplify the memory into two types, **stack memory** and **heap memory**.
-
-**Stack memory** store objects from high bytes to low bytes, while **heap memory** store objects from low bytes to high bytes.
-
-**Stack memory** is used to store static objects, while **heap memory** is used to store dynamic objects called from the keyword `new`.
-
-> Remember to use `delete` to delete the object called by `new`, or it will cause memory overflow. After delete, you'd better to set the pointer to `nullptr`, or you will meet segement fault when reuse the pointer.
-{: .prompt-info }
-
-## $\texttt{Reference Variables}$
-
-Reference variables is defined by the symbol `&`.
-
-```cpp
-int a = 10;
-int &b = a;
-```
-
-The reference variable can be regard as a nick name of the variable it refers to.
-
-## $\texttt{Parameters}$
-
-There usually will have some parameters when we write a function, and the parameter can be **variable**, **pointer**, and **reference variable**.
-
-Here are some examples:
-
-```cpp
-int max(int a, int b) {
-    return a > b ? a : b;
-}
-
-void swap(int &a, int &b) {
-    int c = a;
-    a = b;
-    b = c;
-}
-
-void find(list *L, int x) {
-    // do something
-}
-```
-
-The following table shows the comparison of these three kinda parameters.
-
-![table1](../assets/img/cs225/table1.png)
-
-A special kind of parameter is **constant parameter**. The keyword `const` means unchanged value, so whenever you use `const`, you can regard that thing unchanged.
-
-## $\texttt{Constant Function or Function Constant?}$
-
-As we said before, `const` plus anything means keep unchanged, and it can be used in functions. So, what's the difference between `const` is before or after the function?
-
-`const int f() {}` means that the function will return a **constant variable** that can not be changed in the following code.
-
-While, `int f() const {}` is a member function used in `class` or `struct` that tells us it won't and unable to change `private members` through running itself.
-
-
+The Rule of Three in C++ is a fundamental principle that states if a class requires a user-defined destructor, a user-defined copy constructor, or a user-defined copy assignment operator, it almost certainly requires all three. This rule is essential for managing resources correctly, especially when dealing with dynamic memory allocation.
