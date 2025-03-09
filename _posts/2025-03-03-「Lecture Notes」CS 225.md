@@ -751,6 +751,7 @@ class Porsche: public Car {
         int speed_;
         Porsche() {speed_ = 111; cout << "Porsche Constructor called" << endl;}
         void show() {cout << "Brand: " << brand_ << " Color: " << color_ << " Speed: " << speed_ << endl;}
+        ~Porsche() {cout << "Porsche Destructor called" << endl;}
 };
 
 int main() {
@@ -770,6 +771,7 @@ Brand: XXX Color: XXX
 Car Constructor called
 Porsche Constructor called
 Brand: XXX Color: XXX Speed: 111
+Porsche Destructor called
 Car Destructor called
 Car Destructor called
 ```
