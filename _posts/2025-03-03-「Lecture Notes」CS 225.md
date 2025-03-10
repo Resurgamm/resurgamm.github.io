@@ -781,3 +781,76 @@ Car Destructor called
 
 #### $\texttt{Inheritance Method}$
 
+There are three inheritance method in C/C++ with the keyword `public`, `protected`, and `private`. The order of acess right of the class members from largest to smallest is `public` > `protected` > `private`.
+
+> If we don't consider about the inheritance relation, `protected` members and `private` members are the same that they all couldn't be accessed out of the class. However, if there exist the inheritance relation,  the base class' `protected` members can be accessed in the derived class while the `private` one couldn't be accessed anywhere.
+
+Here is a figure to show the access right for the derived class:
+
+![figure1](https://i-blog.csdnimg.cn/direct/2fe9c26bdcef4b68a1b69ad46f8fbb49.png#pic_center)
+
+By the keyword `using`, we can change the access right for the derived class.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Car {
+    public:
+        string brand_; 
+    protected:
+        int speed_;
+    private:
+        int price_;
+};
+
+class Porsche: public Car {
+    public:
+        using Car::price_;
+    private:
+        using Car::brand_;
+};
+
+int main () {
+    Porsche p;
+    p.brand_ = "Porsche"; // cannot be accessed.
+    p.speed_ = 200;  // cannot be accessed.
+    p.price_ = 10000;  // can be accessed.
+    return 0;
+}
+```
+
+#### $\texttt{Virtual Function}$
+
+Virtual function is a member function that you expect to be redefined in derived classes. 
+
+When you refer to a derived class object using pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class's version of the function.
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class a {
+    public:
+        virtual void p(){ cout<<"a\n"; }
+};
+
+class b : public a {
+    public:
+        void p(){ cout<<"b\n"; }
+};
+
+int main() {
+    a *n = new b();
+    n->p(); // print "b"
+    return 0;
+}
+```
+
+> Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
+{: .prompt-warning }
+
+
+
+If a virtual function is a **pure virtual function**, 
