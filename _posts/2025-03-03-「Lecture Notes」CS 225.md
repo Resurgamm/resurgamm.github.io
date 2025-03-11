@@ -851,5 +851,25 @@ int main() {
 > Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
 {: .prompt-warning }
 
+If a virtual function is a **pure virtual function**, then it should not be implemented in the base class itself and it can be implemented only in the derived classes.
 
-If a virtual function is a **pure virtual function**, 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class a {
+    public:
+        virtual void p() = 0;
+};
+
+class b : public a {
+    public:
+        void p(){ cout<<"b\n"; }
+};
+
+int main() {
+    a *n = new b();
+    n->p(); // print "b"
+    return 0;
+}
+```
