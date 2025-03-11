@@ -852,5 +852,4 @@ int main() {
 {: .prompt-warning }
 
 
-
 If a virtual function is a **pure virtual function**, 
