@@ -787,7 +787,7 @@ There are three inheritance method in C/C++ with the keyword `public`, `protecte
 
 Here is a figure to show the access right for the derived class:
 
-![figure1](https://i-blog.csdnimg.cn/direct/2fe9c26bdcef4b68a1b69ad46f8fbb49.png#pic_center)
+![figure1](../assets/img/cs225/inheritanceMethod.png)
 
 By the keyword `using`, we can change the access right for the derived class.
 
