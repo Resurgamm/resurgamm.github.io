@@ -743,7 +743,7 @@ class Car {
 
         Car() {brand_ = "XXX"; color_ = "XXX"; cout << "Car Constructor called" << endl;}
         void show() {cout << "Brand: " << brand_ << " Color: " << color_ << endl;}
-        ~Car() {cout << "Car Destructor called" << endl;}
+        virtual ~Car() {cout << "Car Destructor called" << endl;}
 };
 
 class Porsche: public Car {
@@ -851,6 +851,88 @@ int main() {
 > Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
 {: .prompt-warning }
 
+Remember that constructors cannot be virtual and destructors should be virtual!
+
+Here is a comparision:
+
+```cpp
+// With `virtual`
+class Car {
+    public:
+        string brand_;
+        string color_;
+
+        Car() {brand_ = "XXX"; color_ = "XXX"; cout << "Car Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << endl;}
+        virtual ~Car() {cout << "Car Destructor called" << endl;}  // 使用 virtual
+};
+
+class Porsche: public Car {
+    public:
+        int speed_;
+        Porsche() {speed_ = 111; cout << "Porsche Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << " Speed: " << speed_ << endl;}
+        ~Porsche() {cout << "Porsche Destructor called" << endl;}
+};
+
+int main() {
+    Car* car = new Porsche();
+    car->show();
+    delete car;  // Correctly call destructors for Porsche and Car
+    return 0;
+}
+```
+
+With the keyword `virtual`, the result is:
+
+```powershell
+Car Constructor called
+Porsche Constructor called
+Brand: XXX Color: XXX Speed: 111
+Porsche Destructor called
+Car Destructor called
+```
+
+```cpp
+// Without `virtual`
+class Car {
+    public:
+        string brand_;
+        string color_;
+
+        Car() {brand_ = "XXX"; color_ = "XXX"; cout << "Car Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << endl;}
+        ~Car() {cout << "Car Destructor called" << endl;}  // 不使用 virtual
+};
+
+class Porsche: public Car {
+    public:
+        int speed_;
+        Porsche() {speed_ = 111; cout << "Porsche Constructor called" << endl;}
+        void show() {cout << "Brand: " << brand_ << " Color: " << color_ << " Speed: " << speed_ << endl;}
+        ~Porsche() {cout << "Porsche Destructor called" << endl;}
+};
+
+int main() {
+    Car* car = new Porsche();
+    car->show();
+    delete car;  // Only the destructor of Car is called
+    return 0;
+}
+```
+
+Without the keyword `virtual`, the result is:
+
+```powershell
+Car Constructor called
+Porsche Constructor called
+Brand: XXX Color: XXX Speed: 111
+Car Destructor called
+```
+
+> Whether the destructor of the base class is declared as the `virtual` keyword affects the destruction process of the derived class object. If the destructor of the base class is not a virtual function, **only the destructor of the base class is called**, not the destructor of the derived class, when an object of the derived class is deleted by a pointer to the base class. **This can result in resource leaks or improperly released resources specific to derived classes**.
+{: .prompt-info }
+
 If a virtual function is a **pure virtual function**, then it should not be implemented in the base class itself and it can be implemented only in the derived classes.
 
 ```cpp
@@ -873,3 +955,8 @@ int main() {
     return 0;
 }
 ```
+
+> If a class contains one or more pure virtual functions, it is an **abstract class**. `class a` above is an abstract class.
+> The abstract class is used to express broad concepts from which more concrete classes can be derived. If a class has a pure virtual function, we cannot create an instance of it.
+{: .prompt-info }
+
