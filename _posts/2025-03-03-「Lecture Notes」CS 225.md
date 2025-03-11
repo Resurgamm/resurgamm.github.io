@@ -960,3 +960,136 @@ int main() {
 > The abstract class is used to express broad concepts from which more concrete classes can be derived. If a class has a pure virtual function, we cannot create an instance of it.
 {: .prompt-info }
 
+## $\texttt{Template}$
+
+### $\texttt{Function Template}$
+
+The general form of a template function definition is as follows:
+
+```cpp
+template <typename type> ret-type func-name(parameter list) {
+   // something
+}
+```
+
+Here, `type` is the placeholder name of the data type used by the function. This name can be used in function definitions.
+
+Here is an example of a function template that returns the maximum of two numbers:
+
+```cpp
+#include <iostream>
+#include <string>
+ 
+using namespace std;
+ 
+template <typename T>
+T const& Max(T const& a, T const& b) { 
+    return a < b ? b : a; 
+} 
+int main() {
+ 
+    int i = 39;
+    int j = 20;
+    cout << "Max(i, j): " << Max(i, j) << endl; 
+ 
+    double f1 = 13.5; 
+    double f2 = 20.7; 
+    cout << "Max(f1, f2): " << Max(f1, f2) << endl; 
+ 
+    string s1 = "Hello"; 
+    string s2 = "World"; 
+    cout << "Max(s1, s2): " << Max(s1, s2) << endl; 
+ 
+    return 0;
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```powershell
+Max(i, j): 39
+Max(f1, f2): 20.7
+Max(s1, s2): World
+```
+
+### $\texttt{Class Template}$
+
+Just as we define function templates, we can also define class templates. The general form of a generic class declaration is as follows:
+
+```cpp
+template <class type> class class-name {
+
+}
+```
+
+Here, `type` is a placeholder type name that can be specified when the class is instantiated. You can use a comma-separated list to define multiple generic data types.
+
+The following example defines the class `Stack<>` and implements generic methods to stack and unstack elements:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <string>
+#include <stdexcept>
+ 
+using namespace std;
+ 
+template <class T>
+class Stack { 
+  private: 
+    vector<T> elems;     
+ 
+  public: 
+    void push(T const&);  
+    void pop();             
+    T top() const;            
+    bool empty() const { return elems.empty(); } 
+}; 
+ 
+template <class T>
+void Stack<T>::push(T const& elem) { 
+    // 追加传入元素的副本
+    elems.push_back(elem);    
+} 
+ 
+template <class T>
+void Stack<T>::pop() { 
+    if (elems.empty())
+        throw out_of_range("Stack<>::pop(): empty stack"); 
+    elems.pop_back();         
+} 
+ 
+template <class T>
+T Stack<T>::top () const { 
+    if (elems.empty())
+        throw out_of_range("Stack<>::top(): empty stack"); 
+    return elems.back();      
+} 
+ 
+int main() { 
+    try { 
+        Stack<int> intStack; 
+        Stack<string> stringStack;   
+ 
+        intStack.push(7); 
+        cout << intStack.top() <<endl; 
+ 
+        stringStack.push("hello"); 
+        cout << stringStack.top() << std::endl; 
+        stringStack.pop(); 
+        stringStack.pop(); 
+    } catch (exception const& ex) { 
+        cerr << "Exception: " << ex.what() <<endl; 
+        return -1;
+    } 
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```powershell
+7
+hello
+Exception: Stack<>::pop(): empty stack
+```
