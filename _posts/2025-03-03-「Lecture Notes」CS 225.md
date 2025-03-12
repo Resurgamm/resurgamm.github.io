@@ -838,20 +838,15 @@ class a {
 
 class b : public a {
     public:
-        int b = 1;
-        void p(){ cout<<b<<" b\n"; }
+        void p(){ cout<<"b\n"; }
 };
 
 int main() {
     a *n = new b();
-    n->p(); // print "1 b"
-    cout << n->b << "\n"; // error 
+    n->p(); // print "b"
     return 0;
 }
 ```
-
-> Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The complier will also report an error when we write `n->b`. However the function can still access the members. The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
-{: .prompt-warning }
 
 Remember that constructors cannot be virtual and destructors should be virtual!
 
@@ -935,6 +930,66 @@ Car Destructor called
 > Whether the destructor of the base class is declared as the `virtual` keyword affects the destruction process of the derived class object. If the destructor of the base class is not a virtual function, **only the destructor of the base class is called**, not the destructor of the derived class, when an object of the derived class is deleted by a pointer to the base class. **This can result in resource leaks or improperly released resources specific to derived classes**.
 {: .prompt-info }
 
+#### $\texttt{Object Slicing}$
+
+Object slicing is a concept in object-oriented programming, especially when using inheritance. It occurs when a derived object is assigned to a base object. Properties and methods specific to the derived object are not assigned to the base object, and this information is "sliced" away.
+
+Here is an example:
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class a {
+    public:
+        int a = 0;
+        virtual void p(){ cout << a << " a\n"; }
+};
+
+class b : public a {
+    public:
+        int b = 1;
+        void p(){ cout << b << " b\n"; }
+};
+
+int main() {
+    a n = b();
+    cout << n.a << "\n";
+    // cout << n.b << "\n"; // error
+    n.p();
+
+    a *m = new b();
+    cout << m->a << "\n";
+    //cout << m->b << "\n"; // error
+    m->p();
+
+    b temp;
+    a &o = temp;
+    cout << o.a << "\n";
+    // cout << o.b << "\n"; // error
+    o.p();
+    return 0;
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```powershell
+0
+0 a
+0
+1 b
+0
+1 b
+```
+
+We can see that `n`, `m`, `o` all couldn't access the member variable `b` since object slicing. However, if the base calss' function is a virtual funtion, the derived class' corresponding function won't be sliced and it can access the member variables.
+
+> To avoid object slicing, we should always use Pointers or references to handle polymorphisms. 
+{: .prompt-tip }
+
+#### $\texttt{Pure Virtual Function}$
+
 If a virtual function is a **pure virtual function**, then it should not be implemented in the base class itself and it can be implemented only in the derived classes.
 
 ```cpp
@@ -961,6 +1016,10 @@ int main() {
 > If a class contains one or more pure virtual functions, it is an **abstract class**. `class a` above is an abstract class.
 > The abstract class is used to express broad concepts from which more concrete classes can be derived. If a class has a pure virtual function, we cannot create an instance of it.
 {: .prompt-info }
+
+#### $\texttt{Virtual Function Table}$
+
+
 
 ## $\texttt{Template}$
 
