@@ -1019,6 +1019,24 @@ int main() {
 
 #### $\texttt{Virtual Function Table}$
 
+If a class has at least a virtual function, then it will have a **virtual function table**. The complier will generate a **virtual function table pointer** (`vptr`) at the beginning position of an object, which points to a **virtual function table**(`vtbl`).
+
+Each class uses a virtual function table, and each class object uses a virtual function table pointer.
+
+Here is an example:
+
+```cpp
+class A {
+    public:
+        virtual void a() { cout << "A a()" << endl; }
+        virtual void b() { cout << "A b()" << endl; }
+        virtual void c() { cout << "A c()" << endl; }
+        int x, y;
+}
+```
+
+![example1](https://pic4.zhimg.com/v2-9fafa60a5aa32ff2092242a4a6909e0d_1440w.jpg)
+
 
 
 ## $\texttt{Template}$
