@@ -838,17 +838,19 @@ class a {
 
 class b : public a {
     public:
-        void p(){ cout<<"b\n"; }
+        int b = 1;
+        void p(){ cout<<b<<" b\n"; }
 };
 
 int main() {
     a *n = new b();
-    n->p(); // print "b"
+    n->p(); // print "1 b"
+    cout << n->b << "\n"; // error 
     return 0;
 }
 ```
 
-> Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
+> Note that if we change the code `a *n = new b();` into `a n = b();`, we will get `a` on the screen. It will call base class functions! The complier will also report an error when we write `n->b`. However the function can still access the members. The phenomenon is called **Object Slicing** which will occur when we try to assign a derived claas object to a base class object.
 {: .prompt-warning }
 
 Remember that constructors cannot be virtual and destructors should be virtual!
