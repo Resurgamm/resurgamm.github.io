@@ -1051,7 +1051,6 @@ class Stack {
  
 template <class T>
 void Stack<T>::push(T const& elem) { 
-    // 追加传入元素的副本
     elems.push_back(elem);    
 } 
  
