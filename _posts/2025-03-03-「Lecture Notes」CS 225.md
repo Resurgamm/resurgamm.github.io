@@ -1037,7 +1037,76 @@ class A {
 
 ![example1](https://pic4.zhimg.com/v2-9fafa60a5aa32ff2092242a4a6909e0d_1440w.jpg)
 
+If a class is a deriverd class, and the base class has at least one virtual function, then it own virtual function will be put behind the base class' virtual functions or override the base class' virtual functions.
 
+If a derived class inherits two or more base classes, it own virtual function will be put behind the first base class' virtual functions or override the base class' virtual functions. And we calculate memory usage on a class-by-class basis.
+
+```cpp
+#include <iostream>
+using namespace std;
+class A {     
+};    
+  
+class B {  
+    char ch;     
+    virtual void func0() {}   
+};   
+  
+class C {  
+    char ch1;  
+    char ch2;  
+    virtual void func() {}    
+    virtual void func1()  {}   
+};  
+  
+class D: public A, public C { 
+    int d;     
+    virtual void func()  {}   
+    virtual void func1()  {}  
+};     
+  
+class E: public B, public C
+{     
+    int e;     
+    virtual void func0()  {  }   
+    virtual void func1()  {  } 
+    virtual void func2()  {  }
+};  
+  
+int main(void)  
+{  
+    cout<<"A="<<sizeof(A)<<endl;    
+    cout<<"B="<<sizeof(B)<<endl;     
+    cout<<"C="<<sizeof(C)<<endl;    
+    cout<<"D="<<sizeof(D)<<endl;    
+    cout<<"E="<<sizeof(E)<<endl;    
+    return 0;  
+}  
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```powershell
+A=1
+B=16
+C=16
+D=16
+E=32
+```
+
+What follows is an explanation of the results:
+
+`A` is an empty class, occupies 1 byte.
+
+`B` has a `vptr` and a `char`, occupies `8 + 1 + patching(7) = 16` bytes.
+
+`C` has a `vptr` and two `char`s, occupies `8 + 1 + 1 + patching(6) = 16` bytes.
+
+`D` is derived from `A` and `C`, just calculate `C` and `D` itself, occupies `8 + 1 + 1 + patching(2) + 4 = 16` bytes.
+
+`E` is deriver from `B` and `C`, occupies `8 + 1 + patching(7) + 8 + 1 + 1 + patching(2) + 4 = 32` bytes.
+
+For more informdtion, you can visit [this website](https://cloud.tencent.com/developer/article/1816474).
 
 ## $\texttt{Template}$
 
