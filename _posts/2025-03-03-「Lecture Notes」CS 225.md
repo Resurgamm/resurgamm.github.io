@@ -1240,3 +1240,177 @@ When the above code is compiled and executed, it produces the following results:
 hello
 Exception: Stack<>::pop(): empty stack
 ```
+
+## $\texttt{List}$
+
+```cpp
+#ifndef LIST_H
+#define LIST_H
+
+template <class T>
+struct ListNode {
+    T data;
+    ListNode* next;
+    ListNode(const T& data, ListNode* next = nullptr) : data(data), next(next) {}
+};
+
+template <class T>
+class List {
+    public:
+        void insert(const T& data, unsigned index);
+        void insertAtFront(const T& data);
+        void insertAtBack(const T& data);
+        void removeFront();
+        void removeBack();
+        void remove(unsigned index);
+        void changeValue(const T& data, unsigned index);
+        bool isEmpty() const;
+        unsigned getSize() const;
+        ListNode<T>* findByIndex(unsigned index);
+        ListNode<T>* findByValue(const T& data);
+        void print() const;
+        void printReverse() const;
+        void reverseHelper(ListNode<T>* current) const;
+    private:
+        ListNode<T>* head = nullptr;
+        unsigned size = 0;
+};
+
+#endif
+```
+{: file='list.h'}
+
+```cpp
+#include <bits/stdc++.h>
+#include "list.h"
+using namespace std;
+
+template <class T>
+void List<T>::insertAtFront(const T& data) {
+    ListNode<T>* newNode = new ListNode<T>(data, head);
+    head = newNode;
+    size++;
+}
+
+template <class T>
+void List<T>::insertAtBack(const T& data) {
+    if (head == nullptr) {
+        head = new ListNode<T>(data);
+        size++;
+        return;
+    }
+    ListNode<T>* current = head;
+    while (current->next != nullptr) current = current->next;
+    current->next = new ListNode<T>(data);
+    size++;
+}
+
+template <class T>
+void List<T>::print() const {
+    if (isEmpty()) return;
+    ListNode<T>* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    cout << "\n";
+}
+
+template <class T>
+void List<T>::reverseHelper(ListNode<T>* current) const {
+    if (current == nullptr) return;
+    reverseHelper(current->next);
+    cout << current->data << " ";
+}
+
+template <class T>
+void List<T>::printReverse() const {
+    if (isEmpty()) return;
+    reverseHelper(head);
+    cout << "\n";
+}
+
+template <class T>
+bool List<T>::isEmpty() const { return size == 0; }
+
+template <class T>
+unsigned List<T>::getSize() const { return size; }
+
+template <class T>
+ListNode<T>* List<T>::findByIndex(unsigned index){
+    ListNode<T>* current = head;
+    for (unsigned i = 0; i < index; i++) current = current->next;
+    return current;
+}
+
+template <class T>
+ListNode<T>* List<T>::findByValue(const T& data) {
+    ListNode<T>* current = head;
+    while (current != nullptr) {
+        if (current->data == data) return current;
+        current = current->next;
+    }
+}   
+
+template <class T>
+void List<T>::insert(const T& data, unsigned index) {
+    if (index > size) {
+        cout << "Index out of bounds\n";
+        return;
+    }
+    if (index == 0) {
+        insertAtFront(data);
+        return;
+    }
+    ListNode<T>* newNode = new ListNode<T>(data);
+    ListNode<T>* pre = findByIndex(index - 1);
+    newNode->next = pre->next;
+    pre->next = newNode;
+    size++;
+}
+
+template <class T>
+void List<T>::removeFront() {
+    if (isEmpty()) {
+        cout << "List is empty\n";
+        return;
+    }
+    ListNode<T>* temp = head;
+    head = head->next;
+    size--;
+    delete temp;
+}
+
+template <class T>
+void List<T>::removeBack() {
+    remove(size - 1);
+}
+
+template <class T>
+void List<T>::remove(unsigned index) {
+    if (index >= size) {
+        cout << "Index out of bounds\n";
+        return;
+    }
+    if (index == 0) {
+        removeFront();
+        return;
+    }
+    ListNode<T>* pre = findByIndex(index - 1);
+    ListNode<T>* current = pre->next;
+    pre->next = current->next;
+    size--;
+    delete current;
+}
+
+template <class T>
+void List<T>::changeValue(const T& data, unsigned index) {
+    if (index > size) {
+        cout << "Index out of bounds\n";
+        return;
+    }
+    ListNode<T>* current = findByIndex(index);
+    current->data = data;
+}
+```
+{: file='list.cpp'}
