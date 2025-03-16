@@ -1243,6 +1243,21 @@ Exception: Stack<>::pop(): empty stack
 
 ## $\texttt{List}$
 
+> `Linked list` is a kind of non-continuous and non-sequential storage structure on the physical storage unit. The logical order of data elements is realized through the pointer link order in the linked list. A linked list consists of a series of nodes (each element in the list is called a `node`) that can be dynamically generated at run time. Each node consists of two parts: **a data field** that stores the data element, and **a pointer field** that stores the address of the next node.
+
+### $\texttt{Time Complexity}$
+
+| Operation | Time Complexity |
+|   :---:   |      :---:      |
+| Insert/Remove at **front/back** | $\mathcal{O}(1)$ |
+| Insert/Remove at **arbitrary location** | $\mathcal{O}(n)$ |
+| Change Value | $\mathcal{O}(n)$ |
+| Find | $\mathcal{O}(n)$ |
+
+### $\texttt{Implementation}$
+
+I use a method without pointer references to do the implementation.
+
 ```cpp
 #ifndef LIST_H
 #define LIST_H
