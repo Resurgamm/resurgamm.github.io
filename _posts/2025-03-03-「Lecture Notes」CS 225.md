@@ -1429,3 +1429,155 @@ void List<T>::changeValue(const T& data, unsigned index) {
 }
 ```
 {: file='list.cpp'}
+
+## $\texttt{Stack}$
+
+>  A `Stack` is a linear table that allows insert or delete operations on only one end.
+
+### $\texttt{Time Complexity}$
+
+| Operation | Time Complexity |
+|   :---:   |      :---:      |
+| Push | $\mathcal{O}(1)$ |
+| Pop | $\mathcal{O}(1)$ |
+
+### $\texttt{Implementation}$
+
+Here is an implementation with reference.
+
+```cpp
+#ifndef STACK_H
+#define STACK_H
+
+template <class T>
+class Stack {
+    public:
+        Stack();
+        ~Stack();
+        Stack(const Stack<T>& other);
+        Stack<T>& operator=(const Stack<T>& other);
+        void init();
+        void clear();
+        void copy(const Stack<T>& other);
+        void push(const T& data);
+        void pop();
+        T top() const;
+        bool isEmpty() const;
+    private:
+        unsigned size;
+        unsigned count;
+        T* stack;
+};
+
+#endif
+```
+{: file='stack.h'}
+
+```cpp
+#include <bits/stdc++.h>
+#include "stack.h"
+using namespace std;
+
+template <class T>
+void Stack<T>::init() {
+    size = 1;
+    count = 0;
+    stack = new T[size];
+}
+
+template <class T>
+Stack<T>::Stack() { init(); }
+
+template <class T>
+void Stack<T>::clear() {
+    delete[] stack;
+    init();
+}
+
+template <class T>
+Stack<T>::~Stack() { delete[] stack, stack = nullptr; }
+
+template <class T>
+void Stack<T>::copy(const Stack<T>& other) {
+    size = other.size;
+    count = other.count;
+    stack = new T[size];
+    for (unsigned i = 0; i < count; i++) stack[i] = other.stack[i];
+}
+
+template <class T>
+Stack<T>::Stack(const Stack<T>& other) { clear(); copy(other); }
+
+template <class T>
+Stack<T>& Stack<T>::operator=(const Stack<T>& other) {
+    if (this != &other) {
+        clear();
+        copy(other);
+    }
+    return *this;
+}
+
+template <class T>
+void Stack<T>::push(const T& data) {
+    if (count + 1 == size) {
+        T* newStack = new T[size * 2];
+        size *= 2;
+        for (unsigned i = 0; i < count; i++) newStack[i] = stack[i];
+        delete[] stack;
+        stack = newStack;
+    }
+    stack[count++] = data;
+}
+
+template <class T>
+void Stack<T>::pop() {
+    if (isEmpty()) {
+        cout << "Stack is empty\n";
+        return;
+    }
+    count--;
+}
+
+template <class T>
+T Stack<T>::top() const {
+    if (isEmpty()) {
+        cout << "Stack is empty\n";
+        return T();
+    }
+    return stack[count - 1];
+}
+
+template <class T>
+bool Stack<T>::isEmpty() const { return count == 0; }
+```
+{: file='stack.cpp'}
+
+### $\texttt{Resize Strategy}$
+
+In the implementation of `push`, we can find the resize strategy we use.
+
+```cpp
+if (count + 1 == size) {
+    T* newStack = new T[size * 2];
+    size *= 2;
+    for (unsigned i = 0; i < count; i++) newStack[i] = stack[i];
+    delete[] stack;
+    stack = newStack;
+}
+```
+
+Why we set `size*2` as a new size?
+
+Assume we finally get a stack of the size of `n`, and we went through `k` resizes, then we can easily get the relation $n = 2^k \Rightarrow k = \log_{2}{n}$.
+
+Then the number of operation is:
+
+$$\begin{aligned} 
+T(k) &= \sum_{i = 0}^{k - 1} 2^i \\
+     &= 2^k - 1 \\
+     &= 2^{\log_{2}{n} - 1} \\
+     &= n - 1 \\
+     &= \mathcal{O}(n) 
+\end{aligned}$$
+
+So, in this way, we kept the resize time complexity to a minimum of $\mathcal{O}(n)$.
