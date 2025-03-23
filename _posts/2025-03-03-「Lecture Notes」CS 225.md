@@ -1552,6 +1552,10 @@ bool Stack<T>::isEmpty() const { return count == 0; }
 ```
 {: file='stack.cpp'}
 
+Of course, there exist other ways to implement.
+
+![implications](../assets/img/cs225/implications.png)
+
 ### $\texttt{Resize Strategy}$
 
 In the implementation of `push`, we can find the resize strategy we use.
