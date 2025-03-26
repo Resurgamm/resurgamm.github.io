@@ -765,7 +765,7 @@ int main() {
 
 The compile and run effect is as follows:
 
-```powershell
+```bash
 Car Constructor called
 Brand: XXX Color: XXX
 Car Constructor called
@@ -882,7 +882,7 @@ int main() {
 
 With the keyword `virtual`, the result is:
 
-```powershell
+```bash
 Car Constructor called
 Porsche Constructor called
 Brand: XXX Color: XXX Speed: 111
@@ -920,7 +920,7 @@ int main() {
 
 Without the keyword `virtual`, the result is:
 
-```powershell
+```bash
 Car Constructor called
 Porsche Constructor called
 Brand: XXX Color: XXX Speed: 111
@@ -974,7 +974,7 @@ int main() {
 
 When the above code is compiled and executed, it produces the following results:
 
-```powershell
+```bash
 0
 0 a
 0
@@ -1086,7 +1086,7 @@ int main(void)
 
 When the above code is compiled and executed, it produces the following results:
 
-```powershell
+```bash
 A=1
 B=16
 C=16
@@ -1154,7 +1154,7 @@ int main() {
 
 When the above code is compiled and executed, it produces the following results:
 
-```powershell
+```bash
 Max(i, j): 39
 Max(f1, f2): 20.7
 Max(s1, s2): World
@@ -1235,7 +1235,7 @@ int main() {
 
 When the above code is compiled and executed, it produces the following results:
 
-```powershell
+```bash
 7
 hello
 Exception: Stack<>::pop(): empty stack
@@ -1608,6 +1608,9 @@ So, in this way, we kept the resize time complexity to a minimum of $\mathcal{O}
 > Please use `STL`.
 {: .prompt-tip}
 
+> A special implementation of queue is to use two stacks. All the elements will be pushed into the first stack, and we will check the second stack when we want to pop elements. If it is empty, then pop all the elements from the first stack and push all of them into the second one and pop the top element. Otherwise just pop the top element from the second one. 
+{: .prompt-info}
+
 ## $\texttt{Iterators}$
 
 > In `STL`, an `Iterator` is an object used to access and inspect elements in an `STL` container. It behaves in a similar way to `Pointers`, but it encapsulates some validity checks and provides a uniform access format.
@@ -1664,3 +1667,92 @@ In the definition of `STL`, `iterators` are divided into the following categorie
 
 > The ContiguousIterator was officially introduced in `C++17`.
 {: .prompt-info}
+
+## $\texttt{Functor}$
+
+> A `functor (function object)` is a class or struct object that can be called like a function. It overloads the function-call `operator ()` and allows us to use an object like a function.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Greet {
+    public:
+        void operator() () {
+            cout << "Hello world!\n";
+        }
+};
+
+int main() {
+    Greet greet;
+    greet();
+    return 0;
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```bash
+Hello world!
+```
+
+### $\texttt{Basic Usage}$
+
+As the same as a function, a functor can also accept parameters and return a value.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Add {
+    public:
+        int operator() (int a, int b) { 
+            return a + b;
+        }
+};
+
+int main() {
+    Add add;
+    int sum = add(100, 78);
+    cout << "100 + 78 = " << sum << "\n";
+    return 0;
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```bash
+100 + 78 = 178
+```
+
+Base on the features of the class, a functor can have member variables to help with the problem.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Add_To_Sum {
+    private:
+        int initial_sum;
+    public:
+        Add_To_Sum(int sum = 0) {
+            initial_sum = sum;
+        }
+        int operator() (int val) { 
+            return initial_sum + val;
+        }
+};
+
+int main() {
+    Add_To_Sum addToSum(100);
+    int result = addToSum(78);
+    cout << "100 + 78 = " << sum << "\n";
+    return 0;
+}
+```
+
+When the above code is compiled and executed, it produces the following results:
+
+```bash
+100 + 78 = 178
+```
