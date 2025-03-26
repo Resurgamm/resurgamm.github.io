@@ -1745,7 +1745,7 @@ class Add_To_Sum {
 
 int main() {
     Add_To_Sum addToSum(100);
-    int result = addToSum(78);
+    int sum = addToSum(78);
     cout << "100 + 78 = " << sum << "\n";
     return 0;
 }
