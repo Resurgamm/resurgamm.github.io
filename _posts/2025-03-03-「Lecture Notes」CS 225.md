@@ -1256,6 +1256,9 @@ Exception: Stack<>::pop(): empty stack
 
 ### $\texttt{Implementation}$
 
+> Please use `STL`.
+{: .prompt-tip}
+
 I use a method without pointer references to do the implementation.
 
 ```cpp
@@ -1443,6 +1446,9 @@ void List<T>::changeValue(const T& data, unsigned index) {
 
 ### $\texttt{Implementation}$
 
+> Please use `STL`.
+{: .prompt-tip}
+
 Here is an implementation with reference.
 
 ```cpp
@@ -1585,3 +1591,76 @@ T(k) &= \sum_{i = 0}^{k - 1} 2^i \\
 \end{aligned}$$
 
 So, in this way, we kept the resize time complexity to a minimum of $\mathcal{O}(n)$.
+
+## $\texttt{Queue}$
+
+> A `queue` is a table that has the property that `the element that enters the queue first must leave the queue first`. Because of this property, queues are also commonly referred to as `first in first out (FIFO)` tables.
+
+### $\texttt{Time Complexity}$
+
+| Operation | Time Complexity |
+|   :---:   |      :---:      |
+| Push | $\mathcal{O}(1)$ |
+| Pop | $\mathcal{O}(1)$ |
+
+### $\texttt{Implementation}$
+
+> Please use `STL`.
+{: .prompt-tip}
+
+## $\texttt{Iterators}$
+
+> In `STL`, an `Iterator` is an object used to access and inspect elements in an `STL` container. It behaves in a similar way to `Pointers`, but it encapsulates some validity checks and provides a uniform access format.
+
+![compare](../assets/img/cs225/compare.png)
+
+### $\texttt{Basic Useage}$
+
+> You can just regard an `Iterator` as a `Pointer`.
+{: .prompt-tip}
+
+`Iterators` reload the following operators: `operator *`, `operator ++`, `operator =`,`operator ==`, `operator !=`, which are encapsulated to access to our data.
+
+Here is an example:
+
+```cpp
+vector<int> data(10);
+
+// Access by subscript
+for (int i = 0; i < data.size(); i++) 
+    cout << data[i] << endl;
+
+// Accessed through iterators
+for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
+    cout << *iter << endl; 
+
+// Use `auto` instead of tedious iterator declarations
+for (auto iter = data.begin(); iter != data.end(); iter++)
+    cout << *iter << endl;
+
+//  Use `auto` for a more concise approach
+for (auto val : data)
+    cout << val << endl;
+```
+
+> `auto` is a keyword in `C++11`. Using the `auto` keyword, the compiler automatically deduces the type of the variable from the type of the initial expression. This can lead to more concise code, especially when dealing with complex or verbose types. We don't need to master it now.
+{: .prompt-info}
+
+### $\texttt{Type}$
+
+In the definition of `STL`, `iterators` are divided into the following categories according to the operations they support:
+
+- `InputIterator (Input iterator)` : Only copy, increment and reference access are required.
+  
+- `OutputIterator (output iterator)` : Only copy, increment, and assignment are required.
+
+- `ForwardIterator (forward iterator)` : meets both InputIterator and OutputIterator requirements.
+
+- `BidirectionalIterator`: Supports decrement (i.e. reverse access) based on `ForwardIterator`.
+
+- `RandomAccessIterator`: Based on `BidirectionalIterator`, it supports addition and subtraction operations and comparison operations (i.e., random access).
+  
+- `ContiguousIterator`: On the basis of RandomAccessIterator, it is required to satisfy the equivalence of `*(a + n)` and `*(std::address_of(*a) + n)` for the dereference iterator `a + n` (i.e. continuous storage, where a is a continuous iterator and n is an integer value).
+
+> The ContiguousIterator was officially introduced in `C++17`.
+{: .prompt-info}
