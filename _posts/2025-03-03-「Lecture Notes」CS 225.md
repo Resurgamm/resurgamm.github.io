@@ -1756,3 +1756,75 @@ When the above code is compiled and executed, it produces the following results:
 ```bash
 100 + 78 = 178
 ```
+
+## $\texttt{Tree}$
+
+> A `tree` is a directed (undirected) acyclic graph with $n$ nodes and $n - 1$ edges
+
+> A tree without a fixed root node is called an unrooted tree. There are several equivalent formal definitions of rootless trees:
+> * A connected undirected graph with $n$ nodes and $n - 1$ edges.
+> * Undirected acyclic connected graph.
+> * An undirected graph with only one simple path between any two nodes.
+> * Any edge is the connected graph of the bridge.
+> * There are no circles, and a graph with a unique circle is obtained by adding an edge between any two different points.
+>
+> On the basis of a rootless tree, a node is designated as the `root`, and a `rooted tree` is formed. Rooted trees are often still represented as undirected graphs, but only specify the superior and subordinate relationships between nodes, as detailed below.
+{: .prompt-info }
+
+### $\texttt{Some Definitions about Trees}$
+
+* **Forest**: Each connected component  (connected block) is a graph of the tree. By definition, a tree is also a forest.
+
+* **Spanning Tree**: A generated subgraph of a connected undirected graph that is also required to be a tree. In other words, $n - 1$ is selected in the edge set of the graph and all vertices are connected. 
+
+* **Leaf Node of a Rootless Tree**: Node whose degree does not exceed $1$.
+
+* **Leaf node of a Rooted Tree**: A node with no child nodes.
+
+* **Parent node:** For every node other than the root, it is defined as the second node on the path from that node to the root. The root node has no parent.
+
+* **Ancestor**: A node on the path from a node to the root, in addition to itself. The ancestor set of the root node is empty.
+
+* **Child node**: If $u$ is the father of $v$, then $v$ is the child of $u$. The order of the child nodes is generally not distinguished; binary trees are an exception.
+
+* **Depth**: The number of edges on the path to the root node.
+
+* **Height of the Tree**: The maximum depth of all nodes.
+
+* **Sibling**: Multiple children of the same father are brothers to each other.
+
+* **descendant**: Child node and descendant of child node.
+If $u$ is the ancestor of $v$, then $v$ is the descendant of $u$.
+
+![](https://oi-wiki.org/graph/images/tree-definition.svg)
+
+* **subtree**: The subgraph where the node is located after the edge connected to the parent is deleted.
+
+![](https://oi-wiki.org/graph/images/tree-definition-subtree.svg)
+
+### $\texttt{Binary Tree}$
+
+> A rooted tree with at most two sons per node is called a `binary tree`. The order of two child nodes is often distinguished, called the left child node and the right child node.
+In most cases, the term `binary tree` refers to a `rooted binary tree`. 
+> A `binary tree` $T$ is either:
+> $$\begin{aligned} 
+> T &= \{\} \\
+> &\text{OR} \\
+> T &= \{r, T_L, T_R\}
+>\end{aligned}$$
+
+#### $\texttt{Tree Property: height}$
+
+$$height(T) = \left\{ 
+\begin{aligned}
+a \\
+b
+\end{aligned}
+\right$$
+  
+## $\texttt{BST}$
+
+## $\texttt{AVL Tree}$
+
+
+
