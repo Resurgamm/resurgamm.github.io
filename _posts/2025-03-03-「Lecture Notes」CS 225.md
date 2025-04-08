@@ -1815,13 +1815,20 @@ In most cases, the term `binary tree` refers to a `rooted binary tree`.
 
 #### $\texttt{Tree Property: height}$
 
-$$height(T) = \left\{ 
-\begin{aligned}
-a \\
-b
-\end{aligned}
-\right$$
+Given a binary tree $T$:
+
+$$height(T) =
+\begin{cases}
+\max\{height(T_L, T_R) + 1\} & \text{if}\{r, T_L, T_R\} \\
+-1 & \text{if}\{\}
+\end{cases}$$
   
+#### $\texttt{Tree Property: Full}$
+
+A binary tree $T$ is **full** if and only if:
+
+
+
 ## $\texttt{BST}$
 
 ## $\texttt{AVL Tree}$
