@@ -1806,12 +1806,7 @@ If $u$ is the ancestor of $v$, then $v$ is the descendant of $u$.
 
 > A rooted tree with at most two sons per node is called a `binary tree`. The order of two child nodes is often distinguished, called the left child node and the right child node.
 In most cases, the term `binary tree` refers to a `rooted binary tree`. 
-> A `binary tree` $T$ is either:
-> $$\begin{aligned} 
-> T &= \{\} \\
-> &\text{OR} \\
-> T &= \{r, T_L, T_R\}
->\end{aligned}$$
+> A `binary tree` $T$ is either: $T = \{\}$ or $T = \{r, T_L, T_R\}$.
 
 #### $\texttt{Tree Property: height}$
 
@@ -1825,9 +1820,35 @@ $$height(T) =
   
 #### $\texttt{Tree Property: Full}$
 
-A binary tree $T$ is **full** if and only if:
+A binary tree $F$ is **full** if and only if:
 
+1. $F = \{\}$
 
+2. $F = \{r, T_L, T_R\}$, where $T_L, T_R$  are both empty or both not empty.
+
+#### $\texttt{Tree Property: Perfect}$
+
+A perfect tree $P$ is:
+
+1. $P = \{\}$
+
+2. $P = \{r, T_L, T_R\}$, where $T_L, T_R$ are of height $T_{h - 1}$.
+
+The size of $P_h$ is $|P_h| = 2^{h + 1} - 1$.
+
+#### $\texttt{Tree Property: Complete}$
+
+A complete tree $C$ of height $h, C_h$:
+
+1. $C_{-1} = \{\}$
+
+2. $C_h = \{r, T_L, T_R\}$ and either:
+
+    $T_L$ is $C_{h - 1}$ and $T_R$ is $P_{h - 2}$.
+
+    Or
+
+    $T_L$ is $P_{h - 1}$ and $T_R$ is $C_{h - 1}$.
 
 ## $\texttt{BST}$
 
