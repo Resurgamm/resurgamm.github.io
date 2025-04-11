@@ -1850,6 +1850,97 @@ A complete tree $C$ of height $h, C_h$:
 
     $T_L$ is $P_{h - 1}$ and $T_R$ is $C_{h - 1}$.
 
+### $\texttt{Traversal}$
+
+There are two ways to traversal a binary tree: `DFS` and `BFS`.
+
+#### $\texttt{DFS}$
+
+##### $\texttt{Pre-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-preorder.svg)
+
+Traverse the binary tree in order of root, left, and right.
+
+```cpp
+void preorder(BiTree* root) {
+    if (root == nullptr) return;
+    cout << root->key << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+```
+
+##### $\texttt{In-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-inorder.svg)
+
+Traverse the binary tree in order of left, root, and right.
+
+```cpp
+void inorder(BiTree* root) {
+    if (root == nullptr) return;
+    inorder(root->left);
+    cout << root->key << " ";
+    inorder(root->right);
+}
+```
+
+##### $\texttt{Post-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-postorder.svg)
+
+Traverse the binary tree in order of left, right, and root.
+
+```cpp
+void postorder(BiTree* root) {
+    if (root == nullptr) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->key << " ";
+}
+```
+
+##### $\texttt{Backward Derivation}$
+
+A third traversal sequence can be found given the in-order traversal sequence and another traversal sequence.
+
+![](https://oi-wiki.org/graph/images/tree-basic-reverse.svg)
+
+1. The first element in the pre-order traversal sequence is root, and the last element in the post-order traversal sequence is root.
+
+2. Determine the root node first, and then iterate according to the in-order traversal sequence. The left part of the root is the left subtree, and the right part of the root is the right subtree.
+
+3. Each subtree can be treated as a new tree, still following the above rules.
+
+#### $\texttt{BFS}$
+
+Starting at the root of the tree, the nodes are accessed strictly by hierarchy.
+
+For example, the sequence traversal of the tree below results in `[[1], [2, 3, 4], [5, 6]]` (each layer from left to right).
+
+![](https://oi-wiki.org/graph/images/tree-basic-levelOrder.svg)
+
+```cpp
+vector<vector<int>> levelOrder(Node* root) {
+    if (root == nullptr) return {};
+    vector<vector<int>> res;
+    queue<Node*> q;
+    q.push(root);
+    while (!q.empty()) {
+        int currentLevelSize = q.size(); 
+        res.push_back(vector<int>());
+        for (int i = 0; i < currentLevelSize; i++) {
+            Node* curr = q.front();
+            q.pop();
+            res.back().push_back(curr->val);
+            for (Node* child : curr->children) q.push(child);
+        }
+    }
+    return res;
+}
+```
+
 ## $\texttt{BST}$
 
 ## $\texttt{AVL Tree}$
