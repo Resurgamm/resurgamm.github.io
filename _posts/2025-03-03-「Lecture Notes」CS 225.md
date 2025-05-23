@@ -1756,3 +1756,194 @@ When the above code is compiled and executed, it produces the following results:
 ```bash
 100 + 78 = 178
 ```
+
+## $\texttt{Tree}$
+
+> A `tree` is a directed (undirected) acyclic graph with $n$ nodes and $n - 1$ edges
+
+> A tree without a fixed root node is called an unrooted tree. There are several equivalent formal definitions of rootless trees:
+> * A connected undirected graph with $n$ nodes and $n - 1$ edges.
+> * Undirected acyclic connected graph.
+> * An undirected graph with only one simple path between any two nodes.
+> * Any edge is the connected graph of the bridge.
+> * There are no circles, and a graph with a unique circle is obtained by adding an edge between any two different points.
+>
+> On the basis of a rootless tree, a node is designated as the `root`, and a `rooted tree` is formed. Rooted trees are often still represented as undirected graphs, but only specify the superior and subordinate relationships between nodes, as detailed below.
+{: .prompt-info }
+
+### $\texttt{Some Definitions about Trees}$
+
+* **Forest**: Each connected component  (connected block) is a graph of the tree. By definition, a tree is also a forest.
+
+* **Spanning Tree**: A generated subgraph of a connected undirected graph that is also required to be a tree. In other words, $n - 1$ is selected in the edge set of the graph and all vertices are connected. 
+
+* **Leaf Node of a Rootless Tree**: Node whose degree does not exceed $1$.
+
+* **Leaf node of a Rooted Tree**: A node with no child nodes.
+
+* **Parent node:** For every node other than the root, it is defined as the second node on the path from that node to the root. The root node has no parent.
+
+* **Ancestor**: A node on the path from a node to the root, in addition to itself. The ancestor set of the root node is empty.
+
+* **Child node**: If $u$ is the father of $v$, then $v$ is the child of $u$. The order of the child nodes is generally not distinguished; binary trees are an exception.
+
+* **Depth**: The number of edges on the path to the root node.
+
+* **Height of the Tree**: The maximum depth of all nodes.
+
+* **Sibling**: Multiple children of the same father are brothers to each other.
+
+* **descendant**: Child node and descendant of child node.
+If $u$ is the ancestor of $v$, then $v$ is the descendant of $u$.
+
+![](https://oi-wiki.org/graph/images/tree-definition.svg)
+
+* **subtree**: The subgraph where the node is located after the edge connected to the parent is deleted.
+
+![](https://oi-wiki.org/graph/images/tree-definition-subtree.svg)
+
+### $\texttt{Binary Tree}$
+
+> A rooted tree with at most two sons per node is called a `binary tree`. The order of two child nodes is often distinguished, called the left child node and the right child node.
+In most cases, the term `binary tree` refers to a `rooted binary tree`. 
+> A `binary tree` $T$ is either: $T = \text{\{\}}$ or $T = \{r, T_L, T_R\}$.
+
+#### $\texttt{Tree Property: height}$
+
+Given a binary tree $T$:
+
+$$height(T) =
+\begin{cases}
+\max\{height(T_L, T_R) + 1\} & \text{if}\{r, T_L, T_R\} \\
+-1 & \text{if}\{\}
+\end{cases}$$
+  
+#### $\texttt{Tree Property: Full}$
+
+A binary tree $F$ is **full** if and only if:
+
+1. $F = \text{\{\}}$
+
+2. $F = \{r, T_L, T_R\}$, where $T_L, T_R$  are both empty or both not empty.
+
+#### $\texttt{Tree Property: Perfect}$
+
+A perfect tree $P$ is:
+
+1. $P = \text{\{\}}$
+
+2. $P = \{r, T_L, T_R\}$, where $T_L, T_R$ are of height $T_{h - 1}$.
+
+The size of $P_h$ is $2^{h + 1} - 1$.
+
+#### $\texttt{Tree Property: Complete}$
+
+A complete tree $C$ of height $h, C_h$:
+
+1. $C_{-1} = \text{\{\}}$
+
+2. $C_h = \{r, T_L, T_R\}$ and either:
+
+    $T_L$ is $C_{h - 1}$ and $T_R$ is $P_{h - 2}$.
+
+    Or
+
+    $T_L$ is $P_{h - 1}$ and $T_R$ is $C_{h - 1}$.
+
+### $\texttt{Traversal}$
+
+There are two ways to traversal a binary tree: `DFS` and `BFS`.
+
+#### $\texttt{DFS}$
+
+##### $\texttt{Pre-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-preorder.svg)
+
+Traverse the binary tree in order of root, left, and right.
+
+```cpp
+void preorder(BiTree* root) {
+    if (root == nullptr) return;
+    cout << root->key << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+```
+
+##### $\texttt{In-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-inorder.svg)
+
+Traverse the binary tree in order of left, root, and right.
+
+```cpp
+void inorder(BiTree* root) {
+    if (root == nullptr) return;
+    inorder(root->left);
+    cout << root->key << " ";
+    inorder(root->right);
+}
+```
+
+##### $\texttt{Post-Order Traversal}$
+
+![](https://oi-wiki.org/graph/images/tree-basic-postorder.svg)
+
+Traverse the binary tree in order of left, right, and root.
+
+```cpp
+void postorder(BiTree* root) {
+    if (root == nullptr) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->key << " ";
+}
+```
+
+##### $\texttt{Backward Derivation}$
+
+A third traversal sequence can be found given the in-order traversal sequence and another traversal sequence.
+
+![](https://oi-wiki.org/graph/images/tree-basic-reverse.svg)
+
+1. The first element in the pre-order traversal sequence is root, and the last element in the post-order traversal sequence is root.
+
+2. Determine the root node first, and then iterate according to the in-order traversal sequence. The left part of the root is the left subtree, and the right part of the root is the right subtree.
+
+3. Each subtree can be treated as a new tree, still following the above rules.
+
+#### $\texttt{BFS}$
+
+Starting at the root of the tree, the nodes are accessed strictly by hierarchy.
+
+For example, the sequence traversal of the tree below results in `[[1], [2, 3, 4], [5, 6]]` (each layer from left to right).
+
+![](https://oi-wiki.org/graph/images/tree-basic-levelOrder.svg)
+
+```cpp
+vector<vector<int>> levelOrder(Node* root) {
+    if (root == nullptr) return {};
+    vector<vector<int>> res;
+    queue<Node*> q;
+    q.push(root);
+    while (!q.empty()) {
+        int currentLevelSize = q.size(); 
+        res.push_back(vector<int>());
+        for (int i = 0; i < currentLevelSize; i++) {
+            Node* curr = q.front();
+            q.pop();
+            res.back().push_back(curr->val);
+            for (Node* child : curr->children) q.push(child);
+        }
+    }
+    return res;
+}
+```
+
+## $\texttt{BST}$
+
+## $\texttt{AVL Tree}$
+
+
+
