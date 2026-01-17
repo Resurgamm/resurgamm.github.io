@@ -10,12 +10,38 @@ use-site-title: false
 		a { text-decoration : none; }
 		a:hover { text-decoration : underline; }
 		a, a:visited { color : #b5194f; }
+		.paper-item {
+			display: flex;
+			align-items: stretch; 
+			gap: 16px;
+		}
+		.paper-thumb {
+			flex: 0 0 220px;          
+			display: flex;
+			align-items: center;
+		}
+		.paper-thumb img {
+			width: 100%;
+			object-fit: cover;        
+			border-radius: 6px;
+		}
+		.paper-content {
+			flex: 1;
+			font-size: 16px;
+		}
+		.paper-desc {
+			font-size: 13px;
+			color: grey;
+		}
+		.paper-list {
+			list-style: none;
+			padding-left: 0;
+		}
 	</style>
 	<script src="https://kit.fontawesome.com/5bef57b3e9.js" crossorigin="anonymous"></script>
 </head>
 
-<h2 id="about-me">🗨 About Me</h1>
-<br>
+<h2 id="about-me">🗨 About Me</h2>
 Hi, I'm Boyi Li. I am pursuing my B.Eng. degree in Computer Engineering at the ZJU-UIUC Institute. 
 <br>
 I'm now a research intern in <a href="https://rehg.org/">Rehg Lab</a> in UIUC. I'm also very fortunate to be a research assistant in <a href="https://cvnext.github.io/">CVNext Lab</a> advised by Prof. <a href="https://person.zju.edu.cn/en/gaoangwang/">Gaoang Wang</a>. 
@@ -27,56 +53,72 @@ My research interests include embodied AI, multimodal large language models, mul
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 <b><i class="fa-regular fa-note-sticky" style="font-size:24px"></i> Selected Publications:</b>
 <p><font color="grey" size="3">
-* Equal contribution. ♡ Project lead. ✉ corresponding/co-corresponding author.
+<sup>*</sup> Equal contribution. <sup>♡</sup> Project lead. <sup>✉</sup> corresponding/co-corresponding author.
 <br>
 Also see <a href="https://resurgamm.github.io/publications" target="_blank">Publications Page</a> and <a href="https://scholar.google.com/citations?user=UDWzqY0AAAAJ&hl=en" target="_blank">Google Scholar</a>.
 </font></p>
 
-<ul>
+<ul class="paper-list">
 	<li>
-		<p style="font-size:16px"> 
-			<strong>
-			See and think: Embodied agent in virtual environment
-			</strong>
-			<br>
-			Zhonghan Zhao*,  Wenhao Chai*♡, Xuan Wang*, <b>Boyi Li</b>, Shengyu Hao, Shidong Cao, Tian Ye, Jenq-Neng Hwang, Gaoang Wang✉
-			<a href="https://arxiv.org/abs/2311.15209">[Paper]</a>
-			<a href="https://github.com/rese1f/STEVE">[Code]</a>
-			<a href="https://rese1f.github.io/STEVE/">[Demo]</a>
-			<br>
-			<font color="grey" size="2">
-			A comprehensive and visionary embodied agent in the Minecraft virtual environment comprises three key components: vision perception, language instruction, and code action.
-			</font>
-	  	</p>
+		<div class="paper-item">
+			<div class="paper-thumb">
+				<a href="https://rese1f.github.io/STEVE/">
+					<img src="/assets/img/steve.png" alt="STEVE" loading="lazy"/>
+				</a>
+			</div>
+			<div class="paper-content">
+				<strong>See and think: Embodied agent in virtual environment</strong>
+				<br>
+				Zhonghan Zhao<sup>*</sup>,  Wenhao Chai<sup>*♡</sup>, Xuan Wang<sup>*</sup>, <b>Boyi Li</b>, Shengyu Hao, Shidong Cao, Tian Ye, Jenq-Neng Hwang, Gaoang Wang<sup>✉</sup>
+				<br>
+				<a href="https://arxiv.org/abs/2311.15209">[Paper]</a>
+				<a href="https://github.com/rese1f/STEVE">[Code]</a>
+				<a href="https://rese1f.github.io/STEVE/">[Demo]</a>
+				<br>
+				<div class="paper-desc">
+					A comprehensive and visionary embodied agent in the Minecraft virtual environment comprises three key components: vision perception, language instruction, and code action.
+				</div>
+				<br>
+				<strong>ECCV 2024</strong>
+			</div>
+		</div>
 	</li>
+	<br>
 	<li>
-		<p style="font-size:16px"> 
-			<strong>
-			Adaptive Graph Pruning for Multi-Agent Communication
-			</strong>
-			<br>
-			<b>Boyi Li*</b>, Zhonghan Zhao*♡, Der-Horng Lee✉, Gaoang Wang✉
-			<a href="https://arxiv.org/abs/2506.02951">[Paper]</a>
-			<a href="https://github.com/Resurgamm/AGP">[Code]</a>
-			<a href="https://resurgamm.github.io/AGP/">[Demo]</a>
-			<br>
-			<font color="grey" size="2">
-			A novel task-adaptive multi-agent collaboration framework that jointly optimizes agent quantity (hard-pruning) and communication topology (soft-pruning), dynamically constructing optimized communication topologies tailored specifically to individual tasks. 
-			</font>
-	  	</p>
-	</li><br>
-	
+		<div class="paper-item">
+			<div class="paper-thumb">
+				<a href="https://resurgamm.github.io/AGP/">
+					<img src="/assets/img/agp.png" alt="AGP" loading="lazy"/>
+				</a>
+			</div>
+			<div class="paper-content">
+				<strong>Adaptive Graph Pruning for Multi-Agent Communication</strong>
+				<br>
+				<b>Boyi Li<sup>*</sup></b>, Zhonghan Zhao<sup>*♡</sup>, Der-Horng Lee<sup>✉</sup>, Gaoang Wang<sup>✉</sup>
+				<br>
+				<a href="https://arxiv.org/abs/2506.02951">[Paper]</a>
+				<a href="https://github.com/Resurgamm/AGP">[Code]</a>
+				<a href="https://resurgamm.github.io/AGP/">[Demo]</a>
+				<br>
+				<div class="paper-desc">
+					A novel task-adaptive multi-agent collaboration framework that jointly optimizes agent quantity (hard-pruning) and communication topology (soft-pruning), dynamically constructing optimized communication topologies tailored specifically to individual tasks. 
+				</div>
+				<br>
+				<strong>ECAI 2025</strong>
+			</div>
+		</div>
+	</li>
 </ul>
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-<b><i class="fa fa-newspaper-o" aria-hidden="true" style="font-size:24px"></i> News:</b><br><br>
+<b><i class="fa fa-newspaper-o" aria-hidden="true" style="font-size:24px"></i> News:</b>
 
 <ul>		
-	<li><i>July 2024:</i> <i class="fa-regular fa-note-sticky" style="font-size:20px"></i> Our paper <i>See and think: Embodied agent in virtual environment</i> is accepted by ECCV-2024.
+	<li><i>July 2024:</i> <i class="fa-regular fa-note-sticky" style="font-size:20px"></i> Our paper <i>See and think: Embodied agent in virtual environment</i> is accepted by ECCV 2024.
 	</li><be>
 </ul>
 
 <ul>		
-	<li><i>July 2025:</i> <i class="fa-regular fa-note-sticky" style="font-size:20px"></i> Our paper <i>Adaptive Graph Pruning for Multi-Agent Communication</i> is accepted by ECAI-2025.
+	<li><i>July 2025:</i> <i class="fa-regular fa-note-sticky" style="font-size:20px"></i> Our paper <i>Adaptive Graph Pruning for Multi-Agent Communication</i> is accepted by ECAI 2025.
 	</li><be>
 </ul>
