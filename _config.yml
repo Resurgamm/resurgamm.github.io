@@ -48,7 +48,7 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "boyi.23@intl.zju.edu.cn"
+  email: "boyil2@illinois.edu"
 #  rss: true  # remove this line if you don't want to show an RSS link at the bottom
 #  facebook: deanattali
   github: Resurgamm
@@ -58,7 +58,7 @@ social-network-links:
 #  whatsapp: 15551212
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
-#  linkedin: daattali
+  linkedin: boyi-li-5072483b4
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -75,7 +75,7 @@ social-network-links:
   ORCID: 0009-0004-7271-3429
   google-scholar: Boyi Li
 #  discord: "invite_code" or "users/userid" or "invite/invite_code"
-#  kaggle: yourname
+  kaggle: Resurgamboy1
 #  hackerrank: yourname
 #  gitlab: yourname
 #  itchio: yourname
@@ -94,7 +94,7 @@ rss-description: This website is a virtual proof that I'm awesome
 share-links-active:
   twitter: false
   facebook: false
-  linkedin: false
+  linkedin: true
   vk: false
   reddit: false
 
