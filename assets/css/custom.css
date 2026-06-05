@@ -147,10 +147,45 @@ hr {
   line-height: 1.5;
 }
 
-/* Paper action links: [Paper] [Code] [Website] */
-.paper-content a {
+/* Paper action links rendered as buttons: Paper / Code / Website */
+.paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 4px;
+}
+
+.paper-links a,
+.paper-links a:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  font-size: 13.5px;
   font-weight: 600;
-  margin-right: 4px;
+  line-height: 1.4;
+  color: var(--accent);
+  background: #fff;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+.paper-links a i {
+  font-size: 13px;
+}
+
+.paper-links a:hover {
+  color: #fff;
+  background: var(--accent);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(181, 25, 79, 0.25);
+}
+
+.paper-links a:active {
+  transform: translateY(1px);
 }
 
 /* -----------------------------------------------------------
