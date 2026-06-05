@@ -1,0 +1,176 @@
+/* ===========================================================
+   Custom styles for Boyi Li's homepage
+   Built to match the Beautiful Jekyll theme palette
+   =========================================================== */
+
+:root {
+  --accent: #b5194f;        /* homepage accent (magenta) */
+  --accent-soft: #f7e4ec;   /* light tint of the accent */
+  --ink: #404040;           /* main text colour (theme text-col) */
+  --muted: #7a7a7a;         /* secondary text */
+  --line: #e6e6e6;          /* hairline borders */
+  --card-bg: #ffffff;       /* card background */
+  --radius: 12px;
+}
+
+/* -----------------------------------------------------------
+   1. Reduce left / right page margins (wider content area)
+   -----------------------------------------------------------
+   The base layout wraps content in `.container-md` with a
+   `col-xl-8 offset-xl-2` column. We widen the container and
+   let the inner column span the full width so the side
+   margins shrink while staying centred and readable.        */
+main.container-md {
+  max-width: 1080px;
+}
+
+@media (min-width: 992px) {
+  main.container-md > .row > [class*="col-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* -----------------------------------------------------------
+   2. Links — themed accent with smooth hover
+   ----------------------------------------------------------- */
+a {
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+a,
+a:visited {
+  color: var(--accent);
+}
+a:hover {
+  text-decoration: underline;
+  color: #8c123d;
+}
+
+/* -----------------------------------------------------------
+   3. Section headings
+   ----------------------------------------------------------- */
+h2[id] {
+  margin-top: 1.6rem;
+  margin-bottom: 1rem;
+  padding-left: 0.7rem;
+  border-left: 4px solid var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* -----------------------------------------------------------
+   4. Section divider (replaces the inline grey <hr>)
+   ----------------------------------------------------------- */
+hr {
+  height: 1px !important;
+  border: 0 !important;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--line) 15%,
+    var(--line) 85%,
+    transparent
+  ) !important;
+  margin: 2rem 0 !important;
+}
+
+/* -----------------------------------------------------------
+   5. Publication list & cards
+   ----------------------------------------------------------- */
+.paper-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.paper-item {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.paper-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(181, 25, 79, 0.12);
+  border-color: var(--accent);
+}
+
+.paper-thumb {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.paper-thumb img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.paper-item:hover .paper-thumb img {
+  transform: scale(1.04);
+}
+
+.paper-content {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* Venue badge — the trailing <strong> inside a card */
+.paper-content > strong:last-child {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+}
+
+.paper-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Paper action links: [Paper] [Code] [Website] */
+.paper-content a {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* -----------------------------------------------------------
+   6. News list
+   ----------------------------------------------------------- */
+#news + ul li {
+  margin-bottom: 0.6rem;
+  line-height: 1.55;
+}
+
+/* -----------------------------------------------------------
+   7. Responsive — stack cards on small screens
+   ----------------------------------------------------------- */
+@media (max-width: 576px) {
+  .paper-item {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .paper-thumb {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
