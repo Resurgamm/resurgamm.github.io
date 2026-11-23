@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163 58" fill="#000000" role="img" aria-labelledby="title">
+    <title id="title">Boyi Li contracts to BL</title>
+    <!-- Based on Poppins Bold by the Poppins Project Authors, licensed under SIL OFL 1.1. -->
+    <defs>
+        <path id="letter-i" d="M101.7 7.6Q101.7 5.6 103.12 4.27Q104.55 2.95 106.8 2.95Q109 2.95 110.43 4.27Q111.85 5.6 111.85 7.6Q111.85 9.55 110.43 10.87Q109 12.2 106.8 12.2Q104.55 12.2 103.12 10.87Q101.7 9.55 101.7 7.6ZM111.05 15.1V43H102.5V15.1Z"/>
+    </defs>
+    <style>
+        .given-name-tail, .surname-tail { visibility: hidden; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .given-name-tail, .surname-tail {
+                visibility: visible;
+                animation-name: shorten-name;
+            }
+            .surname { animation-name: close-gap; }
+
+            .given-name-tail, .surname-tail, .surname {
+                animation-duration: 1.8s;
+                animation-timing-function: cubic-bezier(.4, 0, .25, 1);
+                animation-fill-mode: both;
+            }
+
+            @keyframes shorten-name {
+                0%, 36% { clip-path: inset(0) fill-box; }
+                74%, 100% { clip-path: inset(0 100% 0 0) fill-box; }
+            }
+
+            @keyframes close-gap {
+                0%, 41% { transform: translateX(82px); }
+                94%, 100% { transform: none; }
+            }
+        }
+    </style>
+    <path fill-rule="evenodd" d="M33 33.45Q33 37.85 29.93 40.42Q26.85 43 21.35 43H5V7.9H20.8Q26.15 7.9 29.18 10.35Q32.2 12.8 32.2 17Q32.2 20.1 30.58 22.15Q28.95 24.2 26.25 25Q29.3 25.65 31.15 28.02Q33 30.4 33 33.45ZM13.55 22.1H19.15Q21.25 22.1 22.38 21.17Q23.5 20.25 23.5 18.45Q23.5 16.65 22.38 15.7Q21.25 14.75 19.15 14.75H13.55ZM24.35 32.3Q24.35 30.45 23.12 29.4Q21.9 28.35 19.75 28.35H13.55V36.1H19.85Q22 36.1 23.18 35.12Q24.35 34.15 24.35 32.3Z"/>
+    <g class="given-name-tail">
+        <path fill-rule="evenodd" d="M37 29.05Q37 24.75 38.9 21.48Q40.8 18.2 44.1 16.45Q47.4 14.7 51.5 14.7Q55.6 14.7 58.9 16.45Q62.2 18.2 64.1 21.48Q66 24.75 66 29.05Q66 33.35 64.08 36.62Q62.15 39.9 58.83 41.65Q55.5 43.4 51.4 43.4Q47.3 43.4 44.03 41.65Q40.75 39.9 38.88 36.65Q37 33.4 37 29.05ZM57.3 29.05Q57.3 25.7 55.62 23.9Q53.95 22.1 51.5 22.1Q49 22.1 47.35 23.88Q45.7 25.65 45.7 29.05Q45.7 32.4 47.33 34.2Q48.95 36 51.4 36Q53.85 36 55.58 34.2Q57.3 32.4 57.3 29.05Z"/>
+        <path d="M98.4 15.1 80.9 56.25H71.7L78.1 42.05L66.75 15.1H76.3L82.75 32.55L89.15 15.1Z"/>
+        <use href="#letter-i"/>
+    </g>
+    <g class="surname">
+        <path fill="#087c70" d="M46.05 34.7Q46.05 36.2 47.55 36.2Q53.55 36.2 57.25 33.35Q58.7 32.25 60.05 33.4L62.05 36.95Q62.65 38.15 61.55 38.95Q56.3 43 47.4 43H41.75Q37.5 43 37.5 38.75V7.9H46.05Z"/>
+        <g class="surname-tail"><use href="#letter-i" x="-36"/></g>
+    </g>
+</svg>

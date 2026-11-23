@@ -51,3 +51,32 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
 
     document.querySelectorAll(".pub-row, .news-row").forEach((row) => revealOnScroll.observe(row));
 }
+
+const filmDialog = document.getElementById("project-film");
+
+if (filmDialog && typeof filmDialog.showModal === "function") {
+    const title = filmDialog.querySelector("h2");
+    const video = filmDialog.querySelector("video");
+    const fallback = filmDialog.querySelector(".project-film-fallback");
+    const fallbackLink = fallback.querySelector("a");
+
+    document.querySelectorAll("[data-film-title]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            event.preventDefault();
+            title.textContent = `${link.dataset.filmTitle} film`;
+            fallbackLink.href = link.href;
+            fallback.hidden = true;
+            video.src = link.href;
+            filmDialog.showModal();
+        });
+    });
+
+    video.addEventListener("error", () => { fallback.hidden = false; });
+    filmDialog.addEventListener("close", () => {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+    });
+}
